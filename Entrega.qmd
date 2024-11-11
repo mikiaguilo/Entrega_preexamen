@@ -1,0 +1,69 @@
+---
+title: "Taller evaluado de repaso para el Primer Parcial"
+subtitle: "20582- Análisis de Datos para el GMAT"
+format:
+  html:
+    theme: lumen
+    toc: true
+    toc-depth: 3
+Rendering:
+    embed-resources: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+```{r, echo=FALSE}
+library(tidyverse)
+library(readr)
+library(MASS)
+```
+
+En aquest treball ens dedicarem a estudiar com afecta dur una vida activa i saludable als estudis. Per això mirarem les **hores d'activitat física** que fa un alumne a la setmana, les **hores de son** de mitjana al dia, **mitjana expedient,** i la **qualitat percebuda de la concentració**. Per altre banda, es demanarà el **Nivell d'energia percebut**: Classificat com "baix", "mitjà" o "alt", la **percepció del nivell d'estrès**: Classificat com "baix", "moderadament alt" o "alt" i la **satisfacció amb el propi estil de vida**: En una escala del 1 al 5 (sent 1 = gens satisfet i 5 = molt satisfet). A part d'això, també ens interessa la **modalitat del grau** estudiat: (ciències, filologia, activitat física,...) i el **Tipus d'activitat física** que l'alumne fa: (córrer, nedar, ciclisme, ioga, etc.). Anem a simular una mostra de 100 alumnes a partir d'una distribució normal multivariant i la funció sample()
+
+```{r}
+set.seed(123)
+
+# Nombre d'observacions
+n <- 100
+
+# Definim el vector mitjana i la matriu de covariància per les variables quantitatives
+mean <- c(5, 7, 7.5, 4) # mitjanes per: hores d'activitat, hores de son, expedient, concentració percebuda
+cov_matrix <- matrix(c(1.5, 0.5, 0.3, 0.4,
+                       0.5, 1.2, 0.4, 0.2,
+                       0.3, 0.4, 1.0, 0.6,
+                       0.4, 0.2, 0.6, 1.3), 
+                     nrow = 4)
+
+# Generem dades normals multivariants
+quant_data <- mvrnorm(n, mu = mean, Sigma = cov_matrix)
+#quant_data[,3]=round(quant_data[,4], 1), 1), 10)
+Nivell_Energia <- sample(c("baix", "mitjà", "alt"), n, replace = TRUE)
+Nivell_Estres <- sample(c("baix", "moderadament alt", "alt"), n, replace = TRUE)
+Satisfaccio_Estil_Vida <- sample(1:5, n, replace = TRUE)
+# Modalitat del grau estudiat
+modalitats <- c("ciències", "filologia", "activitat física", "enginyeria", "economia")
+Modalitat_Grau <- sample(modalitats, n, replace = TRUE)
+
+# Tipus d'activitat física
+activitats <- c("córrer", "nedar", "ciclisme", "ioga", "gimnàs")
+Tipus_Activitat <- sample(activitats, n, replace = TRUE)
+
+# Creem el dataframe
+dades <- data.frame(
+  Hores_Activitat = quant_data[, 1],
+  Hores_Son = quant_data[, 2],
+  Mitjana_Expedient = quant_data[, 3],
+  Concentracio_Percebuda = quant_data[, 4],
+  Nivell_Energia = Nivell_Energia,
+  Nivell_Estres = Nivell_Estres,
+  Satisfaccio_Estil_Vida = Satisfaccio_Estil_Vida,
+  Modalitat_Grau = Modalitat_Grau,
+  Tipus_Activitat = Tipus_Activitat
+)
+dades
+```
+
+```{}
+```
