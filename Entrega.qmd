@@ -18,9 +18,11 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 library(tidyverse)
 library(readr)
 library(MASS)
+library(GGally)
+library(dplyr)
 ```
 
-En aquest treball ens dedicarem a estudiar com afecta dur una vida activa i saludable als estudis. Per això mirarem les **hores d'activitat física** que fa un alumne a la setmana, les **hores de son** de mitjana al dia, **mitjana expedient,** i la **qualitat percebuda de la concentració**. Per altre banda, es demanarà el **Nivell d'energia percebut**: Classificat com "baix", "mitjà" o "alt", la **percepció del nivell d'estrès**: Classificat com "baix", "moderadament alt" o "alt" i la **satisfacció amb el propi estil de vida**: En una escala del 1 al 5 (sent 1 = gens satisfet i 5 = molt satisfet). A part d'això, també ens interessa la **modalitat del grau** estudiat: (ciències, filologia, activitat física,...) i el **Tipus d'activitat física** que l'alumne fa: (córrer, nedar, ciclisme, ioga, etc.). Anem a simular una mostra de 100 alumnes a partir d'una distribució normal multivariant i la funció sample()
+En aquest treball ens dedicarem a estudiar com afecta dur una vida activa i saludable als estudis, sota la hipòtesi de que dur una vida activa i saludable implica millor rendiment acadèmic. Per això mirarem les **hores d'activitat física** que fa un alumne a la setmana, les **hores de son** de mitjana al dia, **mitjana expedient,** i la **qualitat percebuda de la concentració**. Per altre banda, es demanarà el **Nivell d'energia percebut**: Classificat com "baix", "mitjà" o "alt", la **percepció del nivell d'estrès**: Classificat com "baix", "moderadament alt" o "alt" i la **satisfacció amb el propi estil de vida**: En una escala del 1 al 5 (sent 1 = gens satisfet i 5 = molt satisfet). A part d'això, també ens interessa la **modalitat del grau** estudiat: (ciències, filologia, activitat física,...) i el **Tipus d'activitat física** que l'alumne fa: (córrer, nedar, ciclisme, ioga, etc.). Anem a simular una mostra de 100 alumnes a partir d'una distribució normal multivariant i la funció sample()
 
 ```{r}
 set.seed(123)
@@ -29,28 +31,28 @@ set.seed(123)
 n <- 100
 
 # Definim el vector mitjana i la matriu de covariància per les variables quantitatives
-mean <- c(5, 7, 7.5, 4) # mitjanes per: hores d'activitat, hores de son, expedient, concentració percebuda
-cov_matrix <- matrix(c(1.5, 0.5, 0.3, 0.4,
-                       0.5, 1.2, 0.4, 0.2,
-                       0.3, 0.4, 1.0, 0.6,
-                       0.4, 0.2, 0.6, 1.3), 
-                     nrow = 4)
+mean <- c(5, 7, 6, 4) # mitjanes per: hores d'activitat, hores de son, expedient, concentració percebuda
+cov_matrix <- matrix(c(1.5, 1.0, 0.8, 0.7,
+                       1.0, 1.2, 1.0, 0.9,
+                       0.8, 1.0, 2.0, 1.3,
+                       0.7, 0.9, 1.3, 1.3),
+                     nrow = 4, ncol = 4)
 
 # Generem dades normals multivariants
 quant_data <- mvrnorm(n, mu = mean, Sigma = cov_matrix)
-#quant_data[,3]=round(quant_data[,4], 1), 1), 10)
-Nivell_Energia <- sample(c("baix", "mitjà", "alt"), n, replace = TRUE)
-Nivell_Estres <- sample(c("baix", "moderadament alt", "alt"), n, replace = TRUE)
-Satisfaccio_Estil_Vida <- sample(1:5, n, replace = TRUE)
+quant_data[,3]=pmin(pmax(round(quant_data[,3], 1),1),10)
+Nivell_Energia <- sample(c("baix", "mitjà", "alt","molt alt"), n, replace = TRUE)
+Nivell_Estres <- sample(c("baix", "mitjà", "alt","molt alt"), n, replace = TRUE)
+Satisfaccio_Estil_Vida <- sample(c("dolent", "mitjà", "bo","molt bo"), n, replace = TRUE)
 # Modalitat del grau estudiat
 modalitats <- c("ciències", "filologia", "activitat física", "enginyeria", "economia")
 Modalitat_Grau <- sample(modalitats, n, replace = TRUE)
 
 # Tipus d'activitat física
-activitats <- c("córrer", "nedar", "ciclisme", "ioga", "gimnàs")
+activitats <- c("córrer", "nedar", "ciclisme", "ioga", "gimnàs","res")
 Tipus_Activitat <- sample(activitats, n, replace = TRUE)
 
-# Creem el dataframe
+# Cream el dataframe
 dades <- data.frame(
   Hores_Activitat = quant_data[, 1],
   Hores_Son = quant_data[, 2],
@@ -65,5 +67,74 @@ dades <- data.frame(
 dades
 ```
 
-```{}
+Per començar a analitzar la nostra observació, farem la matriu de dispersió entre les variables quantitatives.
+
+```{r}
+quantitatives= dades %>% dplyr::select(1:4)
+ggpairs(
+  quantitatives,
+  aes(color = dades$Nivell_Estres, fill = dades$Nivell_Estres, alpha = 0.6),
+  lower = list(
+    continuous = wrap("smooth", size = 0.8, alpha = 0.6),
+    combo = wrap("box_no_facet", alpha = 0.7)
+  ),
+  upper = list(
+    continuous = wrap("cor", size = 4)
+  ),
+  diag = list(
+    continuous = wrap("densityDiag", alpha = 0.6)
+  )
+) +
+  theme_minimal() +
+  scale_color_manual(values = c("#F8766D", "#7CAE00", "#00BFC4", "#C77CFF")) +
+  scale_fill_manual(values = c("#F8766D", "#7CAE00", "#00BFC4", "#C77CFF")) +
+  theme(
+    legend.position = "top",
+    panel.grid = element_blank(),
+    axis.text = element_text(size = 10),
+    strip.background = element_rect(fill = "#ECECEC")
+  )
 ```
+
+Podem observar una clara relació lineal directe, és a dir, que quan una variable creix, les altres també ho fan. No obstant això, aquesta relació és més forta en altres. Per exemple, la mitjana de la nota, amb el nivell de concentració té correlació 0,77, i podem observar al gràfic de dispersió, que els punts segueixen la tendència d'una recta. La que menys correlacionada està és la nota mitjana amb les hores d'activitat. Aquí la dependència és més feble, tot i que també es té que quan una variable creix, l'altre també, però menys marcat.
+
+També ens sirà interessant pel nostre estudi comparar la mitjana de la nota de l'expedient amb les variables ordinals.
+
+```{r}
+ordinals= dades %>% dplyr::select(3,5:7)
+ggpairs(ordinals)
+```
+
+Sembla que no tenim trobem cap gran diferència entre cada nivell. Si és cert que en la part de l'estrés, com menys en tens, més augmenta la nota mitjana, però la diferència no és gaire marcada. Aquí seria interessant fer un contrast d'hipòtesi i veure que per cada nivell d'estrés, la mitjana és diferent, o si són diferents. Ja que es distribueixen com a normals, ho farem per ANOVA, que per construcció les nostres variables són distribucions normals.
+
+```{r}
+summary(aov(dades$Mitjana_Expedient~dades$Nivell_Estres))
+summary(aov(dades$Mitjana_Expedient~dades$Nivell_Energia))
+summary(aov(dades$Mitjana_Expedient~dades$Satisfaccio_Estil_Vida))
+
+```
+
+Els \$p\$-valors són prou grans, llavors acceptem les hipòtesis nul·les, i diem que per a cada variable ordinal deferent, les mitjanes de cada nivell són iguales. Notem que, amb el que deiem abans del nivell d'estrés, és cert que el $p$-valor és més petit, però només podríem acceptar la hipòtesi alternativa amb un nivell de significació del 0.88, el quan no creiem que sigui prou precís.
+
+Per acabar el nostre anàlisi descriptiu, vegem si afecta el tipus d'activitat física que feiem i la modalitat que estudiem.
+
+```{r}
+
+ggplot(dades, aes(x = Tipus_Activitat, y = Mitjana_Expedient, fill = Tipus_Activitat)) +
+  geom_violin(trim = FALSE, alpha = 0.7) +  # Diagrama de violí
+  geom_boxplot(width = 0.1, color = "black", alpha = 0.5) + 
+  labs(title = "Diagrama de Violí de la mitjana de l'expediente per tipus d'actividad física",
+       x = "Tipus d'actividat física", y = "Mitjana d'examen") +
+  scale_fill_manual(values = c("córrer" = "red", "nedar" = "blue", "ciclisme" = "green", 
+                               "ioga" = "yellow", "gimnàs" = "purple")) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+Podem observar que no hi ha gaire diferència en com es distribueixen, podríem fer un altre test d'ANOVA i veure si les mitjanes són iguals.
+
+```{r}
+summary(aov(dades$Mitjana_Expedient~dades$Tipus_Activitat))
+```
+
+Efectivament, tenim un $p$-valor prou alt (0.769) i acceptem la hiòtesi nul·la de que les mitjanes són totes igual.

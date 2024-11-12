@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Taller evaluado de repaso para el Primer Parcial</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="Entrega_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Entrega_files/libs/quarto-html/quarto.js"></script>
+<script src="Entrega_files/libs/quarto-html/popper.min.js"></script>
+<script src="Entrega_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Entrega_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Entrega_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Entrega_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Entrega_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Entrega_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Entrega_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+  
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Taller evaluado de repaso para el Primer Parcial</h1>
+<p class="subtitle lead">20582- Análisis de Datos para el GMAT</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>En aquest treball ens dedicarem a estudiar com afecta dur una vida activa i saludable als estudis, sota la hipòtesi de que dur una vida activa i saludable implica millor rendiment acadèmic. Per això mirarem les <strong>hores d’activitat física</strong> que fa un alumne a la setmana, les <strong>hores de son</strong> de mitjana al dia, <strong>mitjana expedient,</strong> i la <strong>qualitat percebuda de la concentració</strong>. Per altre banda, es demanarà el <strong>Nivell d’energia percebut</strong>: Classificat com “baix”, “mitjà” o “alt”, la <strong>percepció del nivell d’estrès</strong>: Classificat com “baix”, “moderadament alt” o “alt” i la <strong>satisfacció amb el propi estil de vida</strong>: En una escala del 1 al 5 (sent 1 = gens satisfet i 5 = molt satisfet). A part d’això, també ens interessa la <strong>modalitat del grau</strong> estudiat: (ciències, filologia, activitat física,…) i el <strong>Tipus d’activitat física</strong> que l’alumne fa: (córrer, nedar, ciclisme, ioga, etc.). Anem a simular una mostra de 100 alumnes a partir d’una distribució normal multivariant i la funció sample()</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Nombre d'observacions</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Definim el vector mitjana i la matriu de covariància per les variables quantitatives</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>mean <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">6</span>, <span class="dv">4</span>) <span class="co"># mitjanes per: hores d'activitat, hores de son, expedient, concentració percebuda</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>cov_matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="fl">1.5</span>, <span class="fl">1.0</span>, <span class="fl">0.8</span>, <span class="fl">0.7</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>                       <span class="fl">1.0</span>, <span class="fl">1.2</span>, <span class="fl">1.0</span>, <span class="fl">0.9</span>,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>                       <span class="fl">0.8</span>, <span class="fl">1.0</span>, <span class="fl">2.0</span>, <span class="fl">1.3</span>,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>                       <span class="fl">0.7</span>, <span class="fl">0.9</span>, <span class="fl">1.3</span>, <span class="fl">1.3</span>),</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>                     <span class="at">nrow =</span> <span class="dv">4</span>, <span class="at">ncol =</span> <span class="dv">4</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Generem dades normals multivariants</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>quant_data <span class="ot">&lt;-</span> <span class="fu">mvrnorm</span>(n, <span class="at">mu =</span> mean, <span class="at">Sigma =</span> cov_matrix)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>quant_data[,<span class="dv">3</span>]<span class="ot">=</span><span class="fu">pmin</span>(<span class="fu">pmax</span>(<span class="fu">round</span>(quant_data[,<span class="dv">3</span>], <span class="dv">1</span>),<span class="dv">1</span>),<span class="dv">10</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>Nivell_Energia <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"baix"</span>, <span class="st">"mitjà"</span>, <span class="st">"alt"</span>,<span class="st">"molt alt"</span>), n, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>Nivell_Estres <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"baix"</span>, <span class="st">"mitjà"</span>, <span class="st">"alt"</span>,<span class="st">"molt alt"</span>), n, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>Satisfaccio_Estil_Vida <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"dolent"</span>, <span class="st">"mitjà"</span>, <span class="st">"bo"</span>,<span class="st">"molt bo"</span>), n, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Modalitat del grau estudiat</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>modalitats <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"ciències"</span>, <span class="st">"filologia"</span>, <span class="st">"activitat física"</span>, <span class="st">"enginyeria"</span>, <span class="st">"economia"</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>Modalitat_Grau <span class="ot">&lt;-</span> <span class="fu">sample</span>(modalitats, n, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Tipus d'activitat física</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>activitats <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"córrer"</span>, <span class="st">"nedar"</span>, <span class="st">"ciclisme"</span>, <span class="st">"ioga"</span>, <span class="st">"gimnàs"</span>,<span class="st">"res"</span>)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>Tipus_Activitat <span class="ot">&lt;-</span> <span class="fu">sample</span>(activitats, n, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Cream el dataframe</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>dades <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">Hores_Activitat =</span> quant_data[, <span class="dv">1</span>],</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">Hores_Son =</span> quant_data[, <span class="dv">2</span>],</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  <span class="at">Mitjana_Expedient =</span> quant_data[, <span class="dv">3</span>],</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  <span class="at">Concentracio_Percebuda =</span> quant_data[, <span class="dv">4</span>],</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>  <span class="at">Nivell_Energia =</span> Nivell_Energia,</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>  <span class="at">Nivell_Estres =</span> Nivell_Estres,</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>  <span class="at">Satisfaccio_Estil_Vida =</span> Satisfaccio_Estil_Vida,</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>  <span class="at">Modalitat_Grau =</span> Modalitat_Grau,</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>  <span class="at">Tipus_Activitat =</span> Tipus_Activitat</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>dades</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Hores_Activitat Hores_Son Mitjana_Expedient Concentracio_Percebuda
+1          4.617536  7.714369               6.3               5.697464
+2          5.242716  7.415998               5.7               4.808692
+3          3.579079  5.043657               4.2               2.665136
+4          4.721277  6.640166               5.8               4.504165
+5          4.319016  6.343510               6.5               4.123107
+6          3.431200  5.304900               4.1               2.019368
+7          4.470457  5.454542               5.9               4.063991
+8          5.001153  7.645589               8.7               5.496419
+9          4.792821  8.414275               6.7               4.997857
+10         5.795758  8.343193               6.3               3.598159
+11         3.200252  6.107053               4.9               2.587822
+12         4.954814  7.141208               5.2               3.329405
+13         3.411841  5.926645               5.8               4.944139
+14         5.062976  6.538271               6.0               3.903725
+15         6.178001  7.297211               6.7               4.191296
+16         3.101776  6.053408               3.1               2.453710
+17         4.732211  6.392542               5.4               3.349101
+18         6.689099  8.106193               8.9               6.296185
+19         3.708244  6.281652               6.1               2.639483
+20         4.794740  7.101430               7.7               4.084630
+21         6.162623  7.983937               7.5               4.794707
+22         4.156485  7.504874               6.7               4.345132
+23         5.549234  7.722877               7.1               5.926363
+24         5.221491  8.041776               6.9               4.857990
+25         7.135991  7.865006               5.8               4.146079
+26         5.943617  8.681048               8.5               5.721574
+27         4.566169  6.042887               5.0               2.867751
+28         4.971999  6.881022               6.1               3.405824
+29         4.919670  8.502234               7.8               5.338437
+30         4.005895  5.488191               4.8               2.409244
+31         5.114683  7.877737               4.1               3.517805
+32         5.823112  7.004001               6.0               4.480839
+33         4.272113  5.971675               4.7               3.355048
+34         3.786862  6.318394               5.5               2.551283
+35         2.750042  5.577072               6.3               3.444789
+36         5.831684  5.628136               4.7               3.131478
+37         3.638242  5.549178               6.0               4.174303
+38         5.558790  7.324222               5.5               4.050605
+39         6.520791  8.217757               5.3               3.636235
+40         4.443589  6.701339               7.5               4.562549
+41         6.245160  7.857960               6.8               4.071133
+42         4.949934  7.297763               6.7               3.846563
+43         4.389369  8.727938               8.1               5.745383
+44         2.085558  4.169485               4.5               1.830662
+45         2.717646  5.304009               5.4               3.178060
+46         5.502679  7.890240               6.9               6.415612
+47         4.271419  6.972087               7.4               4.757776
+48         6.337669  7.086237               6.6               3.994642
+49         6.168344  6.350757               4.0               2.675886
+50         4.025809  6.785593               6.6               4.657092
+51         5.282472  7.208091               5.5               3.109406
+52         6.047204  6.445671               5.6               4.193902
+53         5.433599  6.902920               5.9               3.958220
+54         2.933219  5.449423               4.8               2.889541
+55         4.914009  7.336897               5.8               5.044141
+56         3.352118  5.537412               4.3               2.414291
+57         6.558406  9.092891               7.3               5.654951
+58         4.046252  6.491810               5.3               3.728251
+59         6.041950  6.328890               5.1               4.263119
+60         4.439985  7.093906               6.7               2.649336
+61         5.591842  6.725357               5.1               3.205387
+62         4.672294  7.258693               7.4               4.457899
+63         4.299894  7.060693               7.1               4.629777
+64         7.951576  9.613071               5.2               4.263298
+65         5.048400  8.817714               6.9               5.730093
+66         4.643522  7.153824               4.9               4.178390
+67         5.036556  6.836386               5.2               3.214780
+68         5.115269  6.014547               6.7               3.770749
+69         4.487002  6.428390               4.8               2.546488
+70         3.438540  4.999841               3.1               1.974614
+71         4.723630  8.432594               6.7               4.151490
+72         7.237733  8.980999               8.4               7.113825
+73         3.970173  6.057136               4.5               3.345680
+74         7.438417  8.180520               6.2               3.428221
+75         4.809399  7.852740               7.1               5.042295
+76         3.412446  5.377139               5.4               3.285891
+77         5.412398  7.010592               6.2               4.619504
+78         6.324313  8.337043               7.4               5.136345
+79         5.072572  7.064809               5.4               3.838754
+80         5.060436  6.426886               6.2               4.786403
+81         4.544986  6.236343               7.1               3.732326
+82         5.410822  7.258119               4.6               3.443302
+83         4.966424  7.421313               6.6               4.552345
+84         3.974143  5.710895               5.6               3.800366
+85         4.923589  7.332525               6.4               4.193970
+86         4.295882  7.107809               5.8               3.370935
+87         4.706422  6.469637               4.0               2.517872
+88         4.487101  6.689916               4.8               4.398350
+89         5.988998  7.330094               6.0               4.170961
+90         3.468649  5.904802               4.8               2.930373
+91         4.093955  6.215432               4.2               3.500151
+92         4.361875  5.967377               4.9               4.494951
+93         4.462426  7.401758               5.4               3.857760
+94         5.159157  6.918776               7.4               4.934024
+95         2.407179  5.675994               4.3               3.809561
+96         6.813896  8.663586               5.8               3.644136
+97         3.152001  5.325450               2.2               2.445828
+98         2.793938  5.057955               5.3               2.108265
+99         4.950820  6.647528               6.5               4.775934
+100        4.836568  7.881684               7.5               5.888374
+    Nivell_Energia Nivell_Estres Satisfaccio_Estil_Vida   Modalitat_Grau
+1              alt      molt alt                 dolent         ciències
+2             baix      molt alt                molt bo         ciències
+3         molt alt          baix                  mitjà         ciències
+4         molt alt          baix                     bo         ciències
+5              alt      molt alt                  mitjà activitat física
+6             baix         mitjà                     bo         ciències
+7              alt      molt alt                 dolent        filologia
+8              alt           alt                molt bo activitat física
+9             baix           alt                  mitjà       enginyeria
+10             alt         mitjà                     bo       enginyeria
+11             alt      molt alt                 dolent activitat física
+12             alt          baix                molt bo       enginyeria
+13             alt           alt                  mitjà        filologia
+14             alt          baix                     bo activitat física
+15           mitjà      molt alt                  mitjà       enginyeria
+16             alt      molt alt                 dolent activitat física
+17           mitjà          baix                     bo       enginyeria
+18             alt           alt                     bo         economia
+19        molt alt         mitjà                molt bo         ciències
+20           mitjà           alt                molt bo         economia
+21            baix           alt                     bo       enginyeria
+22        molt alt      molt alt                 dolent         economia
+23        molt alt           alt                molt bo         ciències
+24            baix         mitjà                     bo         ciències
+25             alt          baix                  mitjà         ciències
+26        molt alt           alt                  mitjà        filologia
+27        molt alt      molt alt                  mitjà        filologia
+28            baix      molt alt                     bo       enginyeria
+29           mitjà           alt                 dolent         ciències
+30            baix         mitjà                 dolent        filologia
+31           mitjà         mitjà                  mitjà         ciències
+32        molt alt      molt alt                  mitjà activitat física
+33           mitjà      molt alt                molt bo activitat física
+34            baix      molt alt                     bo         ciències
+35            baix         mitjà                  mitjà       enginyeria
+36        molt alt      molt alt                  mitjà activitat física
+37           mitjà           alt                 dolent         economia
+38        molt alt           alt                     bo        filologia
+39             alt         mitjà                 dolent       enginyeria
+40            baix          baix                     bo        filologia
+41           mitjà      molt alt                     bo        filologia
+42            baix      molt alt                     bo         ciències
+43        molt alt          baix                     bo         ciències
+44        molt alt          baix                  mitjà activitat física
+45           mitjà         mitjà                  mitjà         economia
+46        molt alt          baix                molt bo         economia
+47             alt         mitjà                molt bo         ciències
+48           mitjà         mitjà                molt bo       enginyeria
+49           mitjà           alt                 dolent        filologia
+50             alt           alt                 dolent activitat física
+51            baix           alt                molt bo activitat física
+52           mitjà      molt alt                molt bo        filologia
+53        molt alt           alt                molt bo         economia
+54             alt         mitjà                     bo       enginyeria
+55             alt         mitjà                  mitjà         ciències
+56            baix         mitjà                 dolent       enginyeria
+57             alt           alt                  mitjà activitat física
+58            baix           alt                  mitjà         economia
+59            baix           alt                molt bo         economia
+60             alt          baix                  mitjà       enginyeria
+61            baix           alt                molt bo         economia
+62            baix          baix                 dolent         ciències
+63             alt           alt                     bo         economia
+64        molt alt         mitjà                     bo       enginyeria
+65            baix      molt alt                  mitjà         economia
+66            baix      molt alt                  mitjà         economia
+67            baix          baix                  mitjà         economia
+68        molt alt          baix                 dolent activitat física
+69        molt alt          baix                     bo       enginyeria
+70        molt alt           alt                 dolent         economia
+71           mitjà      molt alt                  mitjà         economia
+72           mitjà          baix                     bo       enginyeria
+73           mitjà         mitjà                molt bo       enginyeria
+74        molt alt      molt alt                 dolent activitat física
+75           mitjà          baix                 dolent activitat física
+76             alt           alt                  mitjà       enginyeria
+77             alt      molt alt                molt bo         ciències
+78           mitjà           alt                     bo       enginyeria
+79        molt alt      molt alt                 dolent        filologia
+80            baix           alt                  mitjà        filologia
+81        molt alt      molt alt                molt bo       enginyeria
+82             alt         mitjà                 dolent         ciències
+83            baix      molt alt                 dolent         ciències
+84             alt           alt                     bo        filologia
+85             alt         mitjà                molt bo       enginyeria
+86             alt          baix                     bo         economia
+87            baix           alt                     bo activitat física
+88        molt alt      molt alt                     bo         ciències
+89           mitjà         mitjà                     bo activitat física
+90             alt         mitjà                  mitjà activitat física
+91             alt          baix                     bo        filologia
+92        molt alt         mitjà                  mitjà       enginyeria
+93        molt alt          baix                     bo         ciències
+94            baix         mitjà                  mitjà activitat física
+95            baix           alt                     bo         economia
+96            baix           alt                  mitjà         economia
+97        molt alt         mitjà                  mitjà         economia
+98             alt         mitjà                     bo        filologia
+99             alt      molt alt                molt bo         economia
+100       molt alt      molt alt                  mitjà         economia
+    Tipus_Activitat
+1            córrer
+2            gimnàs
+3            córrer
+4             nedar
+5            córrer
+6            córrer
+7             nedar
+8              ioga
+9               res
+10           gimnàs
+11            nedar
+12            nedar
+13            nedar
+14              res
+15              res
+16             ioga
+17           gimnàs
+18            nedar
+19         ciclisme
+20              res
+21           córrer
+22              res
+23             ioga
+24         ciclisme
+25              res
+26         ciclisme
+27         ciclisme
+28              res
+29            nedar
+30             ioga
+31             ioga
+32            nedar
+33         ciclisme
+34           córrer
+35             ioga
+36           córrer
+37           córrer
+38             ioga
+39         ciclisme
+40           gimnàs
+41            nedar
+42           gimnàs
+43              res
+44              res
+45            nedar
+46             ioga
+47            nedar
+48            nedar
+49             ioga
+50             ioga
+51           córrer
+52         ciclisme
+53           córrer
+54         ciclisme
+55         ciclisme
+56              res
+57         ciclisme
+58              res
+59           gimnàs
+60            nedar
+61              res
+62           córrer
+63           gimnàs
+64         ciclisme
+65         ciclisme
+66              res
+67         ciclisme
+68         ciclisme
+69              res
+70           córrer
+71         ciclisme
+72         ciclisme
+73              res
+74            nedar
+75           gimnàs
+76           gimnàs
+77            nedar
+78           gimnàs
+79            nedar
+80         ciclisme
+81           córrer
+82         ciclisme
+83              res
+84              res
+85         ciclisme
+86           gimnàs
+87           gimnàs
+88            nedar
+89             ioga
+90         ciclisme
+91           gimnàs
+92           córrer
+93           córrer
+94           gimnàs
+95         ciclisme
+96            nedar
+97              res
+98           gimnàs
+99              res
+100            ioga</code></pre>
+</div>
+</div>
+<p>Per començar a analitzar la nostra observació, farem la matriu de dispersió entre les variables quantitatives.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>quantitatives<span class="ot">=</span> dades <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  quantitatives,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">color =</span> dades<span class="sc">$</span>Nivell_Estres, <span class="at">fill =</span> dades<span class="sc">$</span>Nivell_Estres, <span class="at">alpha =</span> <span class="fl">0.6</span>),</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">lower =</span> <span class="fu">list</span>(</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">continuous =</span> <span class="fu">wrap</span>(<span class="st">"smooth"</span>, <span class="at">size =</span> <span class="fl">0.8</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>),</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">combo =</span> <span class="fu">wrap</span>(<span class="st">"box_no_facet"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">upper =</span> <span class="fu">list</span>(</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">continuous =</span> <span class="fu">wrap</span>(<span class="st">"cor"</span>, <span class="at">size =</span> <span class="dv">4</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">diag =</span> <span class="fu">list</span>(</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">continuous =</span> <span class="fu">wrap</span>(<span class="st">"densityDiag"</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#F8766D"</span>, <span class="st">"#7CAE00"</span>, <span class="st">"#00BFC4"</span>, <span class="st">"#C77CFF"</span>)) <span class="sc">+</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#F8766D"</span>, <span class="st">"#7CAE00"</span>, <span class="st">"#00BFC4"</span>, <span class="st">"#C77CFF"</span>)) <span class="sc">+</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"top"</span>,</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>),</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"#ECECEC"</span>)</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Entrega_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Podem observar una clara relació lineal directe, és a dir, que quan una variable creix, les altres també ho fan. No obstant això, aquesta relació és més forta en altres. Per exemple, la mitjana de la nota, amb el nivell de concentració té correlació 0,77, i podem observar al gràfic de dispersió, que els punts segueixen la tendència d’una recta. La que menys correlacionada està és la nota mitjana amb les hores d’activitat. Aquí la dependència és més feble, tot i que també es té que quan una variable creix, l’altre també, però menys marcat.</p>
+<p>També ens sirà interessant pel nostre estudi comparar la mitjana de la nota de l’expedient amb les variables ordinals.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ordinals<span class="ot">=</span> dades <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="dv">3</span>,<span class="dv">5</span><span class="sc">:</span><span class="dv">7</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(ordinals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Entrega_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Sembla que no tenim trobem cap gran diferència entre cada nivell. Si és cert que en la part de l’estrés, com menys en tens, més augmenta la nota mitjana, però la diferència no és gaire marcada. Aquí seria interessant fer un contrast d’hipòtesi i veure que per cada nivell d’estrés, la mitjana és diferent, o si són diferents. Ja que es distribueixen com a normals, ho farem per ANOVA, que per construcció les nostres variables són distribucions normals.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(dades<span class="sc">$</span>Mitjana_Expedient<span class="sc">~</span>dades<span class="sc">$</span>Nivell_Estres))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                    Df Sum Sq Mean Sq F value Pr(&gt;F)
+dades$Nivell_Estres  3   9.29   3.098   2.031  0.115
+Residuals           96 146.41   1.525               </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(dades<span class="sc">$</span>Mitjana_Expedient<span class="sc">~</span>dades<span class="sc">$</span>Nivell_Energia))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                     Df Sum Sq Mean Sq F value Pr(&gt;F)
+dades$Nivell_Energia  3   2.49   0.829   0.519   0.67
+Residuals            96 153.21   1.596               </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(dades<span class="sc">$</span>Mitjana_Expedient<span class="sc">~</span>dades<span class="sc">$</span>Satisfaccio_Estil_Vida))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                             Df Sum Sq Mean Sq F value Pr(&gt;F)
+dades$Satisfaccio_Estil_Vida  3   3.97   1.325   0.838  0.476
+Residuals                    96 151.73   1.581               </code></pre>
+</div>
+</div>
+<p>Els $p$-valors són prou grans, llavors acceptem les hipòtesis nul·les, i diem que per a cada variable ordinal deferent, les mitjanes de cada nivell són iguales. Notem que, amb el que deiem abans del nivell d’estrés, és cert que el <span class="math inline">\(p\)</span>-valor és més petit, però només podríem acceptar la hipòtesi alternativa amb un nivell de significació del 0.88, el quan no creiem que sigui prou precís.</p>
+<p>Per acabar el nostre anàlisi descriptiu, vegem si afecta el tipus d’activitat física que feiem i la modalitat que estudiem.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dades, <span class="fu">aes</span>(<span class="at">x =</span> Tipus_Activitat, <span class="at">y =</span> Mitjana_Expedient, <span class="at">fill =</span> Tipus_Activitat)) <span class="sc">+</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">trim =</span> <span class="cn">FALSE</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span>  <span class="co"># Diagrama de violí</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span> </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Diagrama de Violí de la mitjana de l'expediente per tipus d'actividad física"</span>,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Tipus d'actividat física"</span>, <span class="at">y =</span> <span class="st">"Mitjana d'examen"</span>) <span class="sc">+</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"córrer"</span> <span class="ot">=</span> <span class="st">"red"</span>, <span class="st">"nedar"</span> <span class="ot">=</span> <span class="st">"blue"</span>, <span class="st">"ciclisme"</span> <span class="ot">=</span> <span class="st">"green"</span>, </span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"ioga"</span> <span class="ot">=</span> <span class="st">"yellow"</span>, <span class="st">"gimnàs"</span> <span class="ot">=</span> <span class="st">"purple"</span>)) <span class="sc">+</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Entrega_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
