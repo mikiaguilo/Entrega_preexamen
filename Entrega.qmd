@@ -22,7 +22,7 @@ library(GGally)
 library(dplyr)
 ```
 
-En aquest treball ens dedicarem a estudiar com afecta dur una vida activa i saludable als estudis, sota la hipòtesi de que dur una vida activa i saludable implica millor rendiment acadèmic. Per això mirarem les **hores d'activitat física** que fa un alumne a la setmana, les **hores de son** de mitjana al dia, **mitjana expedient,** i la **qualitat percebuda de la concentració**. Per altre banda, es demanarà el **Nivell d'energia percebut**: Classificat com "baix", "mitjà" o "alt", la **percepció del nivell d'estrès**: Classificat com "baix", "moderadament alt" o "alt" i la **satisfacció amb el propi estil de vida**: En una escala del 1 al 5 (sent 1 = gens satisfet i 5 = molt satisfet). A part d'això, també ens interessa la **modalitat del grau** estudiat: (ciències, filologia, activitat física,...) i el **Tipus d'activitat física** que l'alumne fa: (córrer, nedar, ciclisme, ioga, etc.). Anem a simular una mostra de 100 alumnes a partir d'una distribució normal multivariant i la funció sample()
+En aquest treball ens dedicarem a estudiar com afecta dur una vida activa i saludable als estudis, sota la hipòtesi de que dur una vida activa i saludable implica millor rendiment acadèmic. Per això mirarem les **hores d'activitat física** que fa un alumne a la setmana, les **hores de son** de mitjana al dia, **mitjana expedient,** i el **nombre de menjades "trampa"** que fa un alume per setmana. Per altre banda, es demanarà el **Nivell d'energia percebut**: Classificat com "baix", "mitjà" o "alt", la **percepció del nivell d'estrès**: Classificat com "baix", "moderadament alt" o "alt" i la **satisfacció amb el propi estil de vida**: En una escala del 1 al 5 (sent 1 = gens satisfet i 5 = molt satisfet). A part d'això, també ens interessa la **modalitat del grau** estudiat: (ciències, filologia, activitat física,...) i el **Tipus d'activitat física** que l'alumne fa: (córrer, nedar, ciclisme, ioga, etc.). Anem a simular una mostra de 100 alumnes a partir d'una distribució normal multivariant i la funció sample()
 
 ```{r}
 set.seed(123)
@@ -31,7 +31,7 @@ set.seed(123)
 n <- 100
 
 # Definim el vector mitjana i la matriu de covariància per les variables quantitatives
-mean <- c(5, 7, 6, 4) # mitjanes per: hores d'activitat, hores de son, expedient, concentració percebuda
+mean <- c(5, 7, 6, 4) # mitjanes per: hores d'activitat, hores de son, expedient, menjades "trampa" per setmana
 cov_matrix <- matrix(c(1.5, 1.0, 0.8, 0.7,
                        1.0, 1.2, 1.0, 0.9,
                        0.8, 1.0, 2.0, 1.3,
@@ -57,7 +57,7 @@ dades <- data.frame(
   Hores_Activitat = quant_data[, 1],
   Hores_Son = quant_data[, 2],
   Mitjana_Expedient = quant_data[, 3],
-  Concentracio_Percebuda = quant_data[, 4],
+  Menjades_Trampa = quant_data[, 4],
   Nivell_Energia = Nivell_Energia,
   Nivell_Estres = Nivell_Estres,
   Satisfaccio_Estil_Vida = Satisfaccio_Estil_Vida,
@@ -96,7 +96,7 @@ ggpairs(
   )
 ```
 
-Podem observar una clara relació lineal directe, és a dir, que quan una variable creix, les altres també ho fan. No obstant això, aquesta relació és més forta en altres. Per exemple, la mitjana de la nota, amb el nivell de concentració té correlació 0,77, i podem observar al gràfic de dispersió, que els punts segueixen la tendència d'una recta. La que menys correlacionada està és la nota mitjana amb les hores d'activitat. Aquí la dependència és més feble, tot i que també es té que quan una variable creix, l'altre també, però menys marcat.
+Podem observar una clara relació lineal directe, és a dir, que quan una variable creix, les altres també ho fan. No obstant això, aquesta relació és més forta en altres. Per exemple, la mitjana de la nota, amb el nombre de menjades "trampa" té correlació 0,77, i podem observar al gràfic de dispersió, que els punts segueixen la tendència d'una recta. La que menys correlacionada està és la nota mitjana amb les hores d'activitat. Aquí la dependència és més feble, tot i que també es té que quan una variable creix, l'altre també, però menys marcat.
 
 També ens sirà interessant pel nostre estudi comparar la mitjana de la nota de l'expedient amb les variables ordinals.
 
@@ -131,10 +131,118 @@ ggplot(dades, aes(x = Tipus_Activitat, y = Mitjana_Expedient, fill = Tipus_Activ
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
-Podem observar que no hi ha gaire diferència en com es distribueixen, podríem fer un altre test d'ANOVA i veure si les mitjanes són iguals.
+Amb aquest diagrama de violí, podem observar que no hi ha gaire diferència en com es distribueixen, podríem fer un altre test d'ANOVA i veure si les mitjanes són iguals.
 
 ```{r}
 summary(aov(dades$Mitjana_Expedient~dades$Tipus_Activitat))
 ```
 
-Efectivament, tenim un $p$-valor prou alt (0.769) i acceptem la hiòtesi nul·la de que les mitjanes són totes igual.
+Efectivament, tenim un $p$-valor prou alt (0.769) i acceptem la hipòtesi nul·la de que les mitjanes són totes igual.
+
+Per acabar l'anàlisi descriptiu, ens pot resultar prou útil mirar la variància generalitzada i la variància total per veure com es dispersionen les dades.
+
+```{r}
+var_gen = quantitatives %>% as.matrix() %>% cov() %>% det()
+var_tot = quantitatives %>% as.matrix() %>% cov() %>% diag() %>% sum()
+var_gen
+var_tot
+```
+
+Fixem-nos que la variància generalitzada és molt baixa (0.2527739), això ens indica que hi ha una baixa variabilitat entre les diferents variables estudiades. Notem que concorda amb la matriu de dispersió vista anteriorment, ja que els punts es reparteixen similarment en tots els casos. La variació total ens indica la variabilitat de les variables quantitatives a tot el conjunt de dades, és més alta (5.181528), això voldria dir que la diferència de la variabilitat total de les dades en conjunt és bastant més notable que no si les mirem en cada grup.
+
+Un cop hem acabat amb l'anàlisi descriptiu, anem a **modelitzar** les diferents modalitats estudiades pels alumnes a partir d'una distribució binomial. Per això haurem d'estimars els paràmetres $p_{ciències}$, $p_{filologia}$, $p_{activitat física}$, $p_{enginyeria}$ i $p_{economia}$ . Aquesta aproximació dels paràmetres ho farem amb els estimadors de màxima versemblança, i.e., les freqïuències relatives. Anem a calcular-les:
+
+```{r}
+modalitat_freq <- dades %>%
+  count(Modalitat_Grau) %>%
+  mutate(proporcio = n / sum(n))
+
+# Mostrar las proporciones calculadas
+p=modalitat_freq %>% dplyr::select(proporcio)
+p
+t(p)
+```
+
+Ara, anem a calcular la probabilitat de que, en una mostra de 20 individus, hi hagi almenys 4 alumnes de ciències, un de filosofia, 8 d'activitat física, 4 d'enginyeria i 3 d'economia.
+
+```{r}
+cas <- c(4,1,8,4,3)
+probab= dmultinom(cas,size = 20, t(p))
+probab
+```
+
+És una probabilitat molt baixa, i té sentit que sigui així, ja que cada modalitat té l'estimador de probabilitat molt similar. De fet, filologia i activitat física tenen el mateix estimador (0.22), i en el nostre esdeveniment hi ha 8 alumnes d'activitat física i només un de filologia. Molt poc probable.
+
+Per continuar estudiant aquesta mostra, ens pot resultar interessant poder estimar la mitjana d'expedient d'un alumne a partir de les hores d'activitat física que fa un alumne a la setmana, la mitjana d'hores de son al dia i el nombre de menjades "trampa" que fa un alumne per setmana. Això es tradueix en fer un model de regressió multilineal de l'estil:
+
+$$
+Y=\beta_0+\beta_1X_1+\beta_2X_2+\beta_3X_3+\epsilon
+$$
+
+On $Y$ és la variable de la mitjana de la nota de l'expedient i $X_i$ són les altres variables quantitatives.
+
+```{r}
+model <- lm(Mitjana_Expedient ~ Hores_Activitat + Hores_Son + Menjades_Trampa, data = dades)
+
+# Resum del model ajustat
+summary(model)
+```
+
+""""Notem que el coeficient de la variable respectiva a hores d'activitat física, té un $p$-valor prou alt, llavors el descartarem i assignarem el valor 0 a aquest valor. Definirem $\alpha=0.06$, així podem acceptar tots els altres coeficients"""". Llavors ens quedaria la següent expresió:
+
+$$Y=1.45211-0.07834X_1+0.25971X_2+0.76076X_3+0.7957$$ Notem que podem escriure aquesta expressió en forma matricial, tendríem que $Y\sim N(X\beta,\sigma^2I)$, i arribaríem a la funció Score, amb el mateix procediment que ho vàrem fer a la pràctica 5:
+
+$$
+S(\beta) = \frac{1}{\sigma^2} X^T (Y - X\beta)
+$$
+
+on:
+
+```{r}
+X=quantitatives %>% mutate(1) %>% dplyr::select(5,1,2,4) %>% as.matrix()
+Y=quantitatives%>% dplyr::select(3)%>%as.matrix()
+beta=model$coefficients
+```
+
+Si la funció de score és zero, això significa que el model ha assolit un màxim de versemblança respecte a $\beta$, i les estimacions actuals (és a dir, $\hat{\beta}$) són els valors que maximitzen la probabilitat d'observar les dades actuals.
+
+```{r}
+t(X)%*%(Y-X%*%beta)
+```
+
+Notem que efectivament tenim $S(\beta)\approx 0$.
+
+Ara podríem fer previsions amb aquest model. Per exemple, calcularem la predicció de la mitjana de l'expedient d'un alumne que fa 6 hores d'activitat física setmanals, que dorm una mitja de 7 hores i mitja i que fa 5 menjades trampa a la setmana:
+
+```{r}
+nou_estudiant <- data.frame(Hores_Activitat = 6, Hores_Son = 7.5, Menjades_Trampa = 5)
+prediccio <- predict(model, newdata = nou_estudiant)
+prediccio
+
+```
+
+L'alumne amb les anteriors característiques esmentades, predim que té una mitjana d'expedient de 6.733716.
+
+Ara, per últim, farem un contrast d'hipòtesi i per veure que la gent que té d'activitat física actual, córrer, té les mateixes mitjanes que la gent que neda, amb una significació de $\alpha=0.05$. És a dir $H_0:\mu_{córrer}=\mu_{nedar}$ i $H_1:\mu_{córrer}\neq \mu_{nedar}$
+
+```{r}
+library(Hotelling)
+dades_filtrades <- dades %>%
+  filter(Tipus_Activitat %in% c("nedar", "córrer"))
+grup_nedar <- dades_filtrades %>%
+  filter(Tipus_Activitat == "nedar") %>%
+  dplyr::select(Hores_Activitat, Hores_Son, Menjades_Trampa, Mitjana_Expedient)
+grup_correr <- dades_filtrades %>%
+  filter(Tipus_Activitat == "córrer") %>%
+  dplyr::select(Hores_Activitat, Hores_Son, Menjades_Trampa, Mitjana_Expedient)
+print(hotelling.test(grup_nedar, grup_correr))
+```
+
+Notem que el $p$-valor\>0.05, llavors acceptem la hipòtesi nul·la, i ens quedem amb que les mitjanes són iguals.
+
+Ara realitzarem el mateix contrast, però de manera teòrica. Calculant l'estadístic del test de Hotelling $T^2$ , i relacionant-lo amb la distribució de Fisher.
+
+```{r}
+S=dades_filtrades %>% dplyr::select(1:4) %>% as.matrix() %>% cov()
+
+```

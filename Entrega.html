@@ -564,6 +564,29 @@ Residuals                    96 151.73   1.581               </code></pre>
 </div>
 </div>
 </div>
+<p>Amb aquest diagrama de violí, podem observar que no hi ha gaire diferència en com es distribueixen, podríem fer un altre test d’ANOVA i veure si les mitjanes són iguals.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(dades<span class="sc">$</span>Mitjana_Expedient<span class="sc">~</span>dades<span class="sc">$</span>Tipus_Activitat))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                      Df Sum Sq Mean Sq F value Pr(&gt;F)
+dades$Tipus_Activitat  5    4.1  0.8207   0.509  0.769
+Residuals             94  151.6  1.6127               </code></pre>
+</div>
+</div>
+<p>Efectivament, tenim un <span class="math inline">\(p\)</span>-valor prou alt (0.769) i acceptem la hipòtesi nul·la de que les mitjanes són totes igual.</p>
+<p>Per acabar l’anàlisi descriptiu, ens pot resultar prou útil mirar la variància generalitzada i la variància total per veure com es dispersionen les dades.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>var_gen <span class="ot">=</span> quantitatives <span class="sc">%&gt;%</span> <span class="fu">as.matrix</span>() <span class="sc">%&gt;%</span> <span class="fu">cov</span>() <span class="sc">%&gt;%</span> <span class="fu">det</span>()</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>var_tot <span class="ot">=</span> quantitatives <span class="sc">%&gt;%</span> <span class="fu">as.matrix</span>() <span class="sc">%&gt;%</span> <span class="fu">cov</span>() <span class="sc">%&gt;%</span> <span class="fu">diag</span>() <span class="sc">%&gt;%</span> <span class="fu">sum</span>()</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>var_gen</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.2527739</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>var_tot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5.181528</code></pre>
+</div>
+</div>
 
 </main>
 <!-- /main column -->
