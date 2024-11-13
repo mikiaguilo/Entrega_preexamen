@@ -3225,6 +3225,7 @@ window.Quarto = {
    
   <ul>
   <li><a href="#conclusions" id="toc-conclusions" class="nav-link active" data-scroll-target="#conclusions">Conclusions</a></li>
+  <li><a href="#bibliografia" id="toc-bibliografia" class="nav-link" data-scroll-target="#bibliografia">Bibliografia</a></li>
   </ul>
 </nav>
 </div>
@@ -3262,7 +3263,8 @@ window.Quarto = {
 </header>
 
 
-<p>En aquest treball ens dedicarem a estudiar com afecta dur una vida activa i saludable als estudis, sota la hipòtesi de que dur una vida activa i saludable implica millor rendiment acadèmic. Per això mirarem les <strong>hores d’activitat física</strong> que fa un alumne a la setmana, les <strong>hores de son</strong> de mitjana al dia, <strong>mitjana expedient,</strong> i el <strong>nombre de menjades “trampa”</strong> que fa un alume per setmana. Per altre banda, es demanarà el <strong>Nivell d’energia percebut</strong>: Classificat com “baix”, “mitjà” o “alt”, la <strong>percepció del nivell d’estrès</strong>: Classificat com “baix”, “moderadament alt” o “alt” i la <strong>satisfacció amb el propi estil de vida</strong>: En una escala del 1 al 5 (sent 1 = gens satisfet i 5 = molt satisfet). A part d’això, també ens interessa la <strong>modalitat del grau</strong> estudiat: (ciències, filologia, activitat física,…) i el <strong>Tipus d’activitat física</strong> que l’alumne fa: (córrer, nedar, ciclisme, ioga, etc.). Anem a simular una mostra de 100 alumnes a partir d’una distribució normal multivariant i la funció sample()</p>
+<p>Enllaç: <a href="https://github.com/mikiaguilo/Entrega_preexamen" class="uri">https://github.com/mikiaguilo/Entrega_preexamen</a></p>
+<p>En aquest treball ens dedicarem a estudiar com afecta dur una vida activa i saludable als estudis, sota la hipòtesi de que dur una vida activa i saludable implica millor rendiment acadèmic. Per això mirarem les <strong>hores d’activitat física</strong> que fa un alumne a la setmana, les <strong>hores de son</strong> de mitjana al dia, <strong>mitjana expedient,</strong> i el <strong>nombre de menjades “trampa”</strong> que fa un alume per setmana. Per altre banda, es demanarà el <strong>Nivell d’energia percebut</strong>: Classificat com “baix”, “mitjà”, “alt” i “molt alt”, la <strong>percepció del nivell d’estrès</strong>: Classificat com “baix”, “mitjà”, “alt” i “molt alt” i la <strong>satisfacció amb el propi estil de vida</strong>: “dolent”, “mitjà,”bo” i “molt bo”. A part d’això, també ens interessa la <strong>modalitat del grau</strong> estudiat: (ciències, filologia, activitat física,…) i el <strong>Tipus d’activitat física</strong> que l’alumne fa: (córrer, nedar, ciclisme, ioga, etc.). Anem a simular una mostra de 100 alumnes a partir d’una distribució normal multivariant i la funció sample()</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -3302,239 +3304,34 @@ window.Quarto = {
 <span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>  <span class="at">Satisfaccio_Estil_Vida =</span> Satisfaccio_Estil_Vida,</span>
 <span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>  <span class="at">Modalitat_Grau =</span> Modalitat_Grau,</span>
 <span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>  <span class="at">Tipus_Activitat =</span> Tipus_Activitat</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>dades</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>    Hores_Activitat Hores_Son Mitjana_Expedient Menjades_Trampa Nivell_Energia
-1          4.617536  7.714369               6.3        5.697464            alt
-2          5.242716  7.415998               5.7        4.808692           baix
-3          3.579079  5.043657               4.2        2.665136       molt alt
-4          4.721277  6.640166               5.8        4.504165       molt alt
-5          4.319016  6.343510               6.5        4.123107            alt
-6          3.431200  5.304900               4.1        2.019368           baix
-7          4.470457  5.454542               5.9        4.063991            alt
-8          5.001153  7.645589               8.7        5.496419            alt
-9          4.792821  8.414275               6.7        4.997857           baix
-10         5.795758  8.343193               6.3        3.598159            alt
-11         3.200252  6.107053               4.9        2.587822            alt
-12         4.954814  7.141208               5.2        3.329405            alt
-13         3.411841  5.926645               5.8        4.944139            alt
-14         5.062976  6.538271               6.0        3.903725            alt
-15         6.178001  7.297211               6.7        4.191296          mitjà
-16         3.101776  6.053408               3.1        2.453710            alt
-17         4.732211  6.392542               5.4        3.349101          mitjà
-18         6.689099  8.106193               8.9        6.296185            alt
-19         3.708244  6.281652               6.1        2.639483       molt alt
-20         4.794740  7.101430               7.7        4.084630          mitjà
-21         6.162623  7.983937               7.5        4.794707           baix
-22         4.156485  7.504874               6.7        4.345132       molt alt
-23         5.549234  7.722877               7.1        5.926363       molt alt
-24         5.221491  8.041776               6.9        4.857990           baix
-25         7.135991  7.865006               5.8        4.146079            alt
-26         5.943617  8.681048               8.5        5.721574       molt alt
-27         4.566169  6.042887               5.0        2.867751       molt alt
-28         4.971999  6.881022               6.1        3.405824           baix
-29         4.919670  8.502234               7.8        5.338437          mitjà
-30         4.005895  5.488191               4.8        2.409244           baix
-31         5.114683  7.877737               4.1        3.517805          mitjà
-32         5.823112  7.004001               6.0        4.480839       molt alt
-33         4.272113  5.971675               4.7        3.355048          mitjà
-34         3.786862  6.318394               5.5        2.551283           baix
-35         2.750042  5.577072               6.3        3.444789           baix
-36         5.831684  5.628136               4.7        3.131478       molt alt
-37         3.638242  5.549178               6.0        4.174303          mitjà
-38         5.558790  7.324222               5.5        4.050605       molt alt
-39         6.520791  8.217757               5.3        3.636235            alt
-40         4.443589  6.701339               7.5        4.562549           baix
-41         6.245160  7.857960               6.8        4.071133          mitjà
-42         4.949934  7.297763               6.7        3.846563           baix
-43         4.389369  8.727938               8.1        5.745383       molt alt
-44         2.085558  4.169485               4.5        1.830662       molt alt
-45         2.717646  5.304009               5.4        3.178060          mitjà
-46         5.502679  7.890240               6.9        6.415612       molt alt
-47         4.271419  6.972087               7.4        4.757776            alt
-48         6.337669  7.086237               6.6        3.994642          mitjà
-49         6.168344  6.350757               4.0        2.675886          mitjà
-50         4.025809  6.785593               6.6        4.657092            alt
-51         5.282472  7.208091               5.5        3.109406           baix
-52         6.047204  6.445671               5.6        4.193902          mitjà
-53         5.433599  6.902920               5.9        3.958220       molt alt
-54         2.933219  5.449423               4.8        2.889541            alt
-55         4.914009  7.336897               5.8        5.044141            alt
-56         3.352118  5.537412               4.3        2.414291           baix
-57         6.558406  9.092891               7.3        5.654951            alt
-58         4.046252  6.491810               5.3        3.728251           baix
-59         6.041950  6.328890               5.1        4.263119           baix
-60         4.439985  7.093906               6.7        2.649336            alt
-61         5.591842  6.725357               5.1        3.205387           baix
-62         4.672294  7.258693               7.4        4.457899           baix
-63         4.299894  7.060693               7.1        4.629777            alt
-64         7.951576  9.613071               5.2        4.263298       molt alt
-65         5.048400  8.817714               6.9        5.730093           baix
-66         4.643522  7.153824               4.9        4.178390           baix
-67         5.036556  6.836386               5.2        3.214780           baix
-68         5.115269  6.014547               6.7        3.770749       molt alt
-69         4.487002  6.428390               4.8        2.546488       molt alt
-70         3.438540  4.999841               3.1        1.974614       molt alt
-71         4.723630  8.432594               6.7        4.151490          mitjà
-72         7.237733  8.980999               8.4        7.113825          mitjà
-73         3.970173  6.057136               4.5        3.345680          mitjà
-74         7.438417  8.180520               6.2        3.428221       molt alt
-75         4.809399  7.852740               7.1        5.042295          mitjà
-76         3.412446  5.377139               5.4        3.285891            alt
-77         5.412398  7.010592               6.2        4.619504            alt
-78         6.324313  8.337043               7.4        5.136345          mitjà
-79         5.072572  7.064809               5.4        3.838754       molt alt
-80         5.060436  6.426886               6.2        4.786403           baix
-81         4.544986  6.236343               7.1        3.732326       molt alt
-82         5.410822  7.258119               4.6        3.443302            alt
-83         4.966424  7.421313               6.6        4.552345           baix
-84         3.974143  5.710895               5.6        3.800366            alt
-85         4.923589  7.332525               6.4        4.193970            alt
-86         4.295882  7.107809               5.8        3.370935            alt
-87         4.706422  6.469637               4.0        2.517872           baix
-88         4.487101  6.689916               4.8        4.398350       molt alt
-89         5.988998  7.330094               6.0        4.170961          mitjà
-90         3.468649  5.904802               4.8        2.930373            alt
-91         4.093955  6.215432               4.2        3.500151            alt
-92         4.361875  5.967377               4.9        4.494951       molt alt
-93         4.462426  7.401758               5.4        3.857760       molt alt
-94         5.159157  6.918776               7.4        4.934024           baix
-95         2.407179  5.675994               4.3        3.809561           baix
-96         6.813896  8.663586               5.8        3.644136           baix
-97         3.152001  5.325450               2.2        2.445828       molt alt
-98         2.793938  5.057955               5.3        2.108265            alt
-99         4.950820  6.647528               6.5        4.775934            alt
-100        4.836568  7.881684               7.5        5.888374       molt alt
-    Nivell_Estres Satisfaccio_Estil_Vida   Modalitat_Grau Tipus_Activitat
-1        molt alt                 dolent         ciències          córrer
-2        molt alt                molt bo         ciències          gimnàs
-3            baix                  mitjà         ciències          córrer
-4            baix                     bo         ciències           nedar
-5        molt alt                  mitjà activitat física          córrer
-6           mitjà                     bo         ciències          córrer
-7        molt alt                 dolent        filologia           nedar
-8             alt                molt bo activitat física            ioga
-9             alt                  mitjà       enginyeria          gimnàs
-10          mitjà                     bo       enginyeria           nedar
-11       molt alt                 dolent activitat física           nedar
-12           baix                molt bo       enginyeria           nedar
-13            alt                  mitjà        filologia            ioga
-14           baix                     bo activitat física          gimnàs
-15       molt alt                  mitjà       enginyeria           nedar
-16       molt alt                 dolent activitat física        ciclisme
-17           baix                     bo       enginyeria          córrer
-18            alt                     bo         economia            ioga
-19          mitjà                molt bo         ciències        ciclisme
-20            alt                molt bo         economia        ciclisme
-21            alt                     bo       enginyeria        ciclisme
-22       molt alt                 dolent         economia           nedar
-23            alt                molt bo         ciències            ioga
-24          mitjà                     bo         ciències            ioga
-25           baix                  mitjà         ciències           nedar
-26            alt                  mitjà        filologia        ciclisme
-27       molt alt                  mitjà        filologia          córrer
-28       molt alt                     bo       enginyeria            ioga
-29            alt                 dolent         ciències          córrer
-30          mitjà                 dolent        filologia          córrer
-31          mitjà                  mitjà         ciències            ioga
-32       molt alt                  mitjà activitat física        ciclisme
-33       molt alt                molt bo activitat física          gimnàs
-34       molt alt                     bo         ciències           nedar
-35          mitjà                  mitjà       enginyeria          gimnàs
-36       molt alt                  mitjà activitat física           nedar
-37            alt                 dolent         economia            ioga
-38            alt                     bo        filologia           nedar
-39          mitjà                 dolent       enginyeria           nedar
-40           baix                     bo        filologia            ioga
-41       molt alt                     bo        filologia            ioga
-42       molt alt                     bo         ciències          córrer
-43           baix                     bo         ciències        ciclisme
-44           baix                  mitjà activitat física          córrer
-45          mitjà                  mitjà         economia        ciclisme
-46           baix                molt bo         economia        ciclisme
-47          mitjà                molt bo         ciències        ciclisme
-48          mitjà                molt bo       enginyeria          gimnàs
-49            alt                 dolent        filologia           nedar
-50            alt                 dolent activitat física          córrer
-51            alt                molt bo activitat física          gimnàs
-52       molt alt                molt bo        filologia        ciclisme
-53            alt                molt bo         economia        ciclisme
-54          mitjà                     bo       enginyeria        ciclisme
-55          mitjà                  mitjà         ciències        ciclisme
-56          mitjà                 dolent       enginyeria          córrer
-57            alt                  mitjà activitat física        ciclisme
-58            alt                  mitjà         economia        ciclisme
-59            alt                molt bo         economia           nedar
-60           baix                  mitjà       enginyeria          gimnàs
-61            alt                molt bo         economia          gimnàs
-62           baix                 dolent         ciències           nedar
-63            alt                     bo         economia          gimnàs
-64          mitjà                     bo       enginyeria           nedar
-65       molt alt                  mitjà         economia        ciclisme
-66       molt alt                  mitjà         economia          córrer
-67           baix                  mitjà         economia        ciclisme
-68           baix                 dolent activitat física        ciclisme
-69           baix                     bo       enginyeria          gimnàs
-70            alt                 dolent         economia          gimnàs
-71       molt alt                  mitjà         economia           nedar
-72           baix                     bo       enginyeria            ioga
-73          mitjà                molt bo       enginyeria        ciclisme
-74       molt alt                 dolent activitat física          gimnàs
-75           baix                 dolent activitat física          córrer
-76            alt                  mitjà       enginyeria          córrer
-77       molt alt                molt bo         ciències          gimnàs
-78            alt                     bo       enginyeria        ciclisme
-79       molt alt                 dolent        filologia           nedar
-80            alt                  mitjà        filologia          gimnàs
-81       molt alt                molt bo       enginyeria            ioga
-82          mitjà                 dolent         ciències          córrer
-83       molt alt                 dolent         ciències          gimnàs
-84            alt                     bo        filologia          gimnàs
-85          mitjà                molt bo       enginyeria          córrer
-86           baix                     bo         economia          córrer
-87            alt                     bo activitat física          gimnàs
-88       molt alt                     bo         ciències            ioga
-89          mitjà                     bo activitat física          gimnàs
-90          mitjà                  mitjà activitat física            ioga
-91           baix                     bo        filologia          gimnàs
-92          mitjà                  mitjà       enginyeria          gimnàs
-93           baix                     bo         ciències          córrer
-94          mitjà                  mitjà activitat física           nedar
-95            alt                     bo         economia          gimnàs
-96            alt                  mitjà         economia          córrer
-97          mitjà                  mitjà         economia          gimnàs
-98          mitjà                     bo        filologia            ioga
-99       molt alt                molt bo         economia        ciclisme
-100      molt alt                  mitjà         economia            ioga</code></pre>
-</div>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Per començar a analitzar la nostra observació, farem la matriu de dispersió entre les variables quantitatives.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>quantitatives<span class="ot">=</span> dades <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  quantitatives,</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">color =</span> dades<span class="sc">$</span>Nivell_Estres, <span class="at">fill =</span> dades<span class="sc">$</span>Nivell_Estres, <span class="at">alpha =</span> <span class="fl">0.6</span>),</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">lower =</span> <span class="fu">list</span>(</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">continuous =</span> <span class="fu">wrap</span>(<span class="st">&quot;smooth&quot;</span>, <span class="at">size =</span> <span class="fl">0.8</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>),</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">combo =</span> <span class="fu">wrap</span>(<span class="st">&quot;box_no_facet&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">upper =</span> <span class="fu">list</span>(</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">continuous =</span> <span class="fu">wrap</span>(<span class="st">&quot;cor&quot;</span>, <span class="at">size =</span> <span class="dv">4</span>)</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">diag =</span> <span class="fu">list</span>(</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">continuous =</span> <span class="fu">wrap</span>(<span class="st">&quot;densityDiag&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>)</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;#F8766D&quot;</span>, <span class="st">&quot;#7CAE00&quot;</span>, <span class="st">&quot;#00BFC4&quot;</span>, <span class="st">&quot;#C77CFF&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;#F8766D&quot;</span>, <span class="st">&quot;#7CAE00&quot;</span>, <span class="st">&quot;#00BFC4&quot;</span>, <span class="st">&quot;#C77CFF&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">&quot;top&quot;</span>,</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>),</span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;#ECECEC&quot;</span>)</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>quantitatives<span class="ot">=</span> dades <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  quantitatives,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">color =</span> dades<span class="sc">$</span>Nivell_Estres, <span class="at">fill =</span> dades<span class="sc">$</span>Nivell_Estres, <span class="at">alpha =</span> <span class="fl">0.6</span>),</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">lower =</span> <span class="fu">list</span>(</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">continuous =</span> <span class="fu">wrap</span>(<span class="st">&quot;smooth&quot;</span>, <span class="at">size =</span> <span class="fl">0.8</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>),</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">combo =</span> <span class="fu">wrap</span>(<span class="st">&quot;box_no_facet&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">upper =</span> <span class="fu">list</span>(</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">continuous =</span> <span class="fu">wrap</span>(<span class="st">&quot;cor&quot;</span>, <span class="at">size =</span> <span class="dv">4</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">diag =</span> <span class="fu">list</span>(</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">continuous =</span> <span class="fu">wrap</span>(<span class="st">&quot;densityDiag&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;#F8766D&quot;</span>, <span class="st">&quot;#7CAE00&quot;</span>, <span class="st">&quot;#00BFC4&quot;</span>, <span class="st">&quot;#C77CFF&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;#F8766D&quot;</span>, <span class="st">&quot;#7CAE00&quot;</span>, <span class="st">&quot;#00BFC4&quot;</span>, <span class="st">&quot;#C77CFF&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">&quot;top&quot;</span>,</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>),</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;#ECECEC&quot;</span>)</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -3546,8 +3343,8 @@ window.Quarto = {
 <p>Podem observar una clara relació lineal directe, és a dir, que quan una variable creix, les altres també ho fan. No obstant això, aquesta relació és més forta en altres. Per exemple, la mitjana de la nota, amb el nombre de menjades “trampa” té correlació 0,77, i podem observar al gràfic de dispersió, que els punts segueixen la tendència d’una recta. La que menys correlacionada està és la nota mitjana amb les hores d’activitat. Aquí la dependència és més feble, tot i que també es té que quan una variable creix, l’altre també, però menys marcat.</p>
 <p>També ens sirà interessant pel nostre estudi comparar la mitjana de la nota de l’expedient amb les variables ordinals.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ordinals<span class="ot">=</span> dades <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="dv">3</span>,<span class="dv">5</span><span class="sc">:</span><span class="dv">7</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(ordinals)</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ordinals<span class="ot">=</span> dades <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="dv">3</span>,<span class="dv">5</span><span class="sc">:</span><span class="dv">7</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(ordinals)</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -3558,19 +3355,19 @@ window.Quarto = {
 </div>
 <p>Sembla que no tenim trobem cap gran diferència entre cada nivell. Si és cert que en la part de l’estrés, com menys en tens, més augmenta la nota mitjana, però la diferència no és gaire marcada. Aquí seria interessant fer un contrast d’hipòtesi i veure que per cada nivell d’estrés, la mitjana és diferent, o si són diferents. Ja que es distribueixen com a normals, ho farem per ANOVA, que per construcció les nostres variables són distribucions normals.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(dades<span class="sc">$</span>Mitjana_Expedient<span class="sc">~</span>dades<span class="sc">$</span>Nivell_Estres))</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(dades<span class="sc">$</span>Mitjana_Expedient<span class="sc">~</span>dades<span class="sc">$</span>Nivell_Estres))</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                    Df Sum Sq Mean Sq F value Pr(&gt;F)
 dades$Nivell_Estres  3   9.29   3.098   2.031  0.115
 Residuals           96 146.41   1.525               </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(dades<span class="sc">$</span>Mitjana_Expedient<span class="sc">~</span>dades<span class="sc">$</span>Nivell_Energia))</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(dades<span class="sc">$</span>Mitjana_Expedient<span class="sc">~</span>dades<span class="sc">$</span>Nivell_Energia))</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                     Df Sum Sq Mean Sq F value Pr(&gt;F)
 dades$Nivell_Energia  3   2.49   0.829   0.519   0.67
 Residuals            96 153.21   1.596               </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(dades<span class="sc">$</span>Mitjana_Expedient<span class="sc">~</span>dades<span class="sc">$</span>Satisfaccio_Estil_Vida))</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(dades<span class="sc">$</span>Mitjana_Expedient<span class="sc">~</span>dades<span class="sc">$</span>Satisfaccio_Estil_Vida))</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                             Df Sum Sq Mean Sq F value Pr(&gt;F)
 dades$Satisfaccio_Estil_Vida  3   3.97   1.325   0.838  0.476
@@ -3580,15 +3377,15 @@ Residuals                    96 151.73   1.581               </code></pre>
 <p>Els $p$-valors són prou grans, llavors acceptem les hipòtesis nul·les, i diem que per a cada variable ordinal deferent, les mitjanes de cada nivell són iguales. Notem que, amb el que deiem abans del nivell d’estrés, és cert que el <span class="math inline">\(p\)</span>-valor és més petit, però només podríem acceptar la hipòtesi alternativa amb un nivell de significació del 0.88, el quan no creiem que sigui prou precís.</p>
 <p>Per acabar el nostre anàlisi descriptiu, vegem si afecta el tipus d’activitat física que feiem i la modalitat que estudiem.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dades, <span class="fu">aes</span>(<span class="at">x =</span> Tipus_Activitat, <span class="at">y =</span> Mitjana_Expedient, <span class="at">fill =</span> Tipus_Activitat)) <span class="sc">+</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">trim =</span> <span class="cn">FALSE</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span>  <span class="co"># Diagrama de violí</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span> </span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Diagrama de Violí de la mitjana de l&#39;expediente per tipus d&#39;actividad física&quot;</span>,</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Tipus d&#39;actividat física&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Mitjana d&#39;examen&quot;</span>) <span class="sc">+</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;córrer&quot;</span> <span class="ot">=</span> <span class="st">&quot;red&quot;</span>, <span class="st">&quot;nedar&quot;</span> <span class="ot">=</span> <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;ciclisme&quot;</span> <span class="ot">=</span> <span class="st">&quot;green&quot;</span>, </span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>                               <span class="st">&quot;ioga&quot;</span> <span class="ot">=</span> <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;gimnàs&quot;</span> <span class="ot">=</span> <span class="st">&quot;purple&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dades, <span class="fu">aes</span>(<span class="at">x =</span> Tipus_Activitat, <span class="at">y =</span> Mitjana_Expedient, <span class="at">fill =</span> Tipus_Activitat)) <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">trim =</span> <span class="cn">FALSE</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span>  <span class="co"># Diagrama de violí</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span> </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Diagrama de Violí de la mitjana de l&#39;expediente per tipus d&#39;actividad física&quot;</span>,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Tipus d&#39;actividat física&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Mitjana d&#39;examen&quot;</span>) <span class="sc">+</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;córrer&quot;</span> <span class="ot">=</span> <span class="st">&quot;red&quot;</span>, <span class="st">&quot;nedar&quot;</span> <span class="ot">=</span> <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;ciclisme&quot;</span> <span class="ot">=</span> <span class="st">&quot;green&quot;</span>, </span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>                               <span class="st">&quot;ioga&quot;</span> <span class="ot">=</span> <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;gimnàs&quot;</span> <span class="ot">=</span> <span class="st">&quot;purple&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -3599,8 +3396,8 @@ Residuals                    96 151.73   1.581               </code></pre>
 </div>
 <p>Amb aquest diagrama de violí, podem observar que hi ha gaire alguna diferència en com es distribueixen, podríem fer un altre test d’ANOVA i veure si les mitjanes són iguals o no.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>resultats_anova<span class="ot">=</span><span class="fu">aov</span>(dades<span class="sc">$</span>Mitjana_Expedient<span class="sc">~</span>dades<span class="sc">$</span>Tipus_Activitat)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(resultats_anova)</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>resultats_anova<span class="ot">=</span><span class="fu">aov</span>(dades<span class="sc">$</span>Mitjana_Expedient<span class="sc">~</span>dades<span class="sc">$</span>Tipus_Activitat)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(resultats_anova)</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                      Df Sum Sq Mean Sq F value Pr(&gt;F)  
 dades$Tipus_Activitat  4  19.31   4.827   3.362 0.0128 *
@@ -3611,7 +3408,7 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 </div>
 <p>Efectivament, tenim un <span class="math inline">\(p\)</span>-valor baix (0.0128), i si considerem <span class="math inline">\(\alpha=0.05\)</span> i rebutgem la hipòtesi nul·la de que les mitjanes són totes igual, i tendríem diferències en les mitjanes. Executem el test de Tukey post-hoc per veure quines mitjanes difereixen entre elles.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(resultats_anova)</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(resultats_anova)</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Tukey multiple comparisons of means
     95% family-wise confidence level
@@ -3635,25 +3432,25 @@ nedar-ioga      -0.8493421 -1.9799475 0.2812633 0.2333645</code></pre>
 <p>Podem concloure, que ioga té una mitjana diferent a les altres, i que la gent que fa ioga té millors resultats acadèmics.</p>
 <p>Anem a fer el mateix amb els diferents tipus de modalitats d’estudi.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear diagrama de violí per a les modalitats d&#39;estudi</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dades, <span class="fu">aes</span>(<span class="at">x =</span> Modalitat_Grau, <span class="at">y =</span> Mitjana_Expedient, <span class="at">fill =</span> Modalitat_Grau)) <span class="sc">+</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">trim =</span> <span class="cn">FALSE</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span>  <span class="co"># Diagrama de violí</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span>  <span class="co"># Boxplot superposat</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Diagrama de Violí de la Mitjana de l&#39;Expedient per Modalitat d&#39;Estudi&quot;</span>,</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Modalitat d&#39;Estudi&quot;</span>,</span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Mitjana d&#39;Examen&quot;</span></span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;ciències&quot;</span> <span class="ot">=</span> <span class="st">&quot;#FF6347&quot;</span>, <span class="st">&quot;filologia&quot;</span> <span class="ot">=</span> <span class="st">&quot;#4682B4&quot;</span>,</span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>                               <span class="st">&quot;activitat física&quot;</span> <span class="ot">=</span> <span class="st">&quot;#32CD32&quot;</span>, <span class="st">&quot;enginyeria&quot;</span> <span class="ot">=</span> <span class="st">&quot;#FFD700&quot;</span>,</span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>                               <span class="st">&quot;economia&quot;</span> <span class="ot">=</span> <span class="st">&quot;#9370DB&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>),</span>
-<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
-<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear diagrama de violí per a les modalitats d&#39;estudi</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dades, <span class="fu">aes</span>(<span class="at">x =</span> Modalitat_Grau, <span class="at">y =</span> Mitjana_Expedient, <span class="at">fill =</span> Modalitat_Grau)) <span class="sc">+</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">trim =</span> <span class="cn">FALSE</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span>  <span class="co"># Diagrama de violí</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span>  <span class="co"># Boxplot superposat</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Diagrama de Violí de la Mitjana de l&#39;Expedient per Modalitat d&#39;Estudi&quot;</span>,</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Modalitat d&#39;Estudi&quot;</span>,</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Mitjana d&#39;Examen&quot;</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;ciències&quot;</span> <span class="ot">=</span> <span class="st">&quot;#FF6347&quot;</span>, <span class="st">&quot;filologia&quot;</span> <span class="ot">=</span> <span class="st">&quot;#4682B4&quot;</span>,</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>                               <span class="st">&quot;activitat física&quot;</span> <span class="ot">=</span> <span class="st">&quot;#32CD32&quot;</span>, <span class="st">&quot;enginyeria&quot;</span> <span class="ot">=</span> <span class="st">&quot;#FFD700&quot;</span>,</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>                               <span class="st">&quot;economia&quot;</span> <span class="ot">=</span> <span class="st">&quot;#9370DB&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>),</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -3664,8 +3461,8 @@ nedar-ioga      -0.8493421 -1.9799475 0.2812633 0.2333645</code></pre>
 </div>
 <p>Aquí sí que sembla que totes les mitjanes són iguales. Anem a fer el test ANOVA.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>resultats_anova_2<span class="ot">=</span><span class="fu">aov</span>(dades<span class="sc">$</span>Mitjana_Expedient<span class="sc">~</span>dades<span class="sc">$</span>Modalitat_Grau)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(resultats_anova_2)</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>resultats_anova_2<span class="ot">=</span><span class="fu">aov</span>(dades<span class="sc">$</span>Mitjana_Expedient<span class="sc">~</span>dades<span class="sc">$</span>Modalitat_Grau)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(resultats_anova_2)</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                     Df Sum Sq Mean Sq F value Pr(&gt;F)
 dades$Modalitat_Grau  4   1.04  0.2608    0.16  0.958
@@ -3675,13 +3472,13 @@ Residuals            95 154.66  1.6280               </code></pre>
 <p>Efectivament, el <span class="math inline">\(p\)</span>-valor és prou gran (0.958) per quedar-mos amb la hipòtesi nul·la de que totes les mitjanes són iguales.</p>
 <p>Per acabar l’anàlisi descriptiu, ens pot resultar prou útil mirar la variància generalitzada i la variància total per veure com es dispersionen les dades.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>var_gen <span class="ot">=</span> quantitatives <span class="sc">%&gt;%</span> <span class="fu">as.matrix</span>() <span class="sc">%&gt;%</span> <span class="fu">cov</span>() <span class="sc">%&gt;%</span> <span class="fu">det</span>()</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>var_tot <span class="ot">=</span> quantitatives <span class="sc">%&gt;%</span> <span class="fu">as.matrix</span>() <span class="sc">%&gt;%</span> <span class="fu">cov</span>() <span class="sc">%&gt;%</span> <span class="fu">diag</span>() <span class="sc">%&gt;%</span> <span class="fu">sum</span>()</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>var_gen</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>var_gen <span class="ot">=</span> quantitatives <span class="sc">%&gt;%</span> <span class="fu">as.matrix</span>() <span class="sc">%&gt;%</span> <span class="fu">cov</span>() <span class="sc">%&gt;%</span> <span class="fu">det</span>()</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>var_tot <span class="ot">=</span> quantitatives <span class="sc">%&gt;%</span> <span class="fu">as.matrix</span>() <span class="sc">%&gt;%</span> <span class="fu">cov</span>() <span class="sc">%&gt;%</span> <span class="fu">diag</span>() <span class="sc">%&gt;%</span> <span class="fu">sum</span>()</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>var_gen</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.2527739</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>var_tot</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>var_tot</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 5.181528</code></pre>
 </div>
@@ -3689,13 +3486,13 @@ Residuals            95 154.66  1.6280               </code></pre>
 <p>Fixem-nos que la variància generalitzada és molt baixa (0.2527739), això ens indica que hi ha una baixa variabilitat entre les diferents variables estudiades. Notem que concorda amb la matriu de dispersió vista anteriorment, ja que els punts es reparteixen similarment en tots els casos. La variació total ens indica la variabilitat de les variables quantitatives a tot el conjunt de dades, és més alta (5.181528), això voldria dir que la diferència de la variabilitat total de les dades en conjunt és bastant més notable que no si les mirem en cada grup.</p>
 <p>Un cop hem acabat amb l’anàlisi descriptiu, anem a <strong>modelitzar</strong> les diferents modalitats estudiades pels alumnes a partir d’una distribució binomial. Per això haurem d’estimars els paràmetres <span class="math inline">\(p_{ciències}\)</span>, <span class="math inline">\(p_{filologia}\)</span>, <span class="math inline">\(p_{activitat física}\)</span>, <span class="math inline">\(p_{enginyeria}\)</span> i <span class="math inline">\(p_{economia}\)</span> . Aquesta aproximació dels paràmetres ho farem amb els estimadors de màxima versemblança, i.e., les freqïuències relatives. Anem a calcular-les:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>modalitat_freq <span class="ot">&lt;-</span> dades <span class="sc">%&gt;%</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(Modalitat_Grau) <span class="sc">%&gt;%</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">proporcio =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar las proporciones calculadas</span></span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>p<span class="ot">=</span>modalitat_freq <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(proporcio)</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>modalitat_freq <span class="ot">&lt;-</span> dades <span class="sc">%&gt;%</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(Modalitat_Grau) <span class="sc">%&gt;%</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">proporcio =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar las proporciones calculadas</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>p<span class="ot">=</span>modalitat_freq <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(proporcio)</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  proporcio
 1      0.19
@@ -3704,7 +3501,7 @@ Residuals            95 154.66  1.6280               </code></pre>
 4      0.22
 5      0.15</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t</span>(p)</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t</span>(p)</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          [,1] [,2] [,3] [,4] [,5]
 proporcio 0.19 0.22 0.22 0.22 0.15</code></pre>
@@ -3712,9 +3509,9 @@ proporcio 0.19 0.22 0.22 0.22 0.15</code></pre>
 </div>
 <p>Ara, anem a calcular la probabilitat de que, en una mostra de 20 individus, hi hagi almenys 4 alumnes de ciències, un de filosofia, 8 d’activitat física, 4 d’enginyeria i 3 d’economia.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>cas <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">8</span>,<span class="dv">4</span>,<span class="dv">3</span>)</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>probab<span class="ot">=</span> <span class="fu">dmultinom</span>(cas,<span class="at">size =</span> <span class="dv">20</span>, <span class="fu">t</span>(p))</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>probab</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>cas <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">8</span>,<span class="dv">4</span>,<span class="dv">3</span>)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>probab<span class="ot">=</span> <span class="fu">dmultinom</span>(cas,<span class="at">size =</span> <span class="dv">20</span>, <span class="fu">t</span>(p))</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>probab</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.0002171768</code></pre>
 </div>
@@ -3726,10 +3523,10 @@ Y=\beta_0+\beta_1X_1+\beta_2X_2+\beta_3X_3+\epsilon
 \]</span></p>
 <p>On <span class="math inline">\(Y\)</span> és la variable de la mitjana de la nota de l’expedient i <span class="math inline">\(X_i\)</span> són les altres variables quantitatives.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(Mitjana_Expedient <span class="sc">~</span> Hores_Activitat <span class="sc">+</span> Hores_Son <span class="sc">+</span> Menjades_Trampa, <span class="at">data =</span> dades)</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Resum del model ajustat</span></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(Mitjana_Expedient <span class="sc">~</span> Hores_Activitat <span class="sc">+</span> Hores_Son <span class="sc">+</span> Menjades_Trampa, <span class="at">data =</span> dades)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Resum del model ajustat</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -3761,13 +3558,13 @@ S(\beta) = \frac{1}{\sigma^2} X^T (Y - X\beta)
 \]</span></p>
 <p>on:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>X<span class="ot">=</span>quantitatives <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="dv">1</span>) <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="dv">5</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">4</span>) <span class="sc">%&gt;%</span> <span class="fu">as.matrix</span>()</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>Y<span class="ot">=</span>quantitatives<span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="dv">3</span>)<span class="sc">%&gt;%</span><span class="fu">as.matrix</span>()</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>beta<span class="ot">=</span>model<span class="sc">$</span>coefficients</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>X<span class="ot">=</span>quantitatives <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="dv">1</span>) <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="dv">5</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">4</span>) <span class="sc">%&gt;%</span> <span class="fu">as.matrix</span>()</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>Y<span class="ot">=</span>quantitatives<span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="dv">3</span>)<span class="sc">%&gt;%</span><span class="fu">as.matrix</span>()</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>beta<span class="ot">=</span>model<span class="sc">$</span>coefficients</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Si la funció de score és zero, això significa que el model ha assolit un màxim de versemblança respecte a <span class="math inline">\(\beta\)</span>, i les estimacions actuals (és a dir, <span class="math inline">\(\hat{\beta}\)</span>) són els valors que maximitzen la probabilitat d’observar les dades actuals.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t</span>(X)<span class="sc">%*%</span>(Y<span class="sc">-</span>X<span class="sc">%*%</span>beta)</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t</span>(X)<span class="sc">%*%</span>(Y<span class="sc">-</span>X<span class="sc">%*%</span>beta)</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                Mitjana_Expedient
 1                    1.723066e-13
@@ -3779,9 +3576,9 @@ Menjades_Trampa      7.252249e-13</code></pre>
 <p>Notem que efectivament tenim <span class="math inline">\(S(\beta)\approx 0\)</span>.</p>
 <p>Ara podríem fer previsions amb aquest model. Per exemple, calcularem la predicció de la mitjana de l’expedient d’un alumne que fa 6 hores d’activitat física setmanals, que dorm una mitja de 7 hores i mitja i que fa 5 menjades trampa a la setmana:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>nou_estudiant <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Hores_Activitat =</span> <span class="dv">6</span>, <span class="at">Hores_Son =</span> <span class="fl">7.5</span>, <span class="at">Menjades_Trampa =</span> <span class="dv">5</span>)</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>prediccio <span class="ot">&lt;-</span> <span class="fu">predict</span>(model, <span class="at">newdata =</span> nou_estudiant)</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>prediccio</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>nou_estudiant <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Hores_Activitat =</span> <span class="dv">6</span>, <span class="at">Hores_Son =</span> <span class="fl">7.5</span>, <span class="at">Menjades_Trampa =</span> <span class="dv">5</span>)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>prediccio <span class="ot">&lt;-</span> <span class="fu">predict</span>(model, <span class="at">newdata =</span> nou_estudiant)</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>prediccio</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       1 
 6.733716 </code></pre>
@@ -3790,16 +3587,16 @@ Menjades_Trampa      7.252249e-13</code></pre>
 <p>L’alumne amb les anteriors característiques esmentades, predim que té una mitjana d’expedient de 6.733716.</p>
 <p>Ara, per últim, farem un contrast d’hipòtesi i per veure que la gent que té d’activitat física actual, córrer, té les mateixes mitjanes que la gent que neda, amb una significació de <span class="math inline">\(\alpha=0.05\)</span>. És a dir <span class="math inline">\(H_0:\mu_{córrer}=\mu_{nedar}\)</span> i <span class="math inline">\(H_1:\mu_{córrer}\neq \mu_{nedar}\)</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Hotelling)</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>dades_filtrades <span class="ot">&lt;-</span> dades <span class="sc">%&gt;%</span></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Tipus_Activitat <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;nedar&quot;</span>, <span class="st">&quot;córrer&quot;</span>))</span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>grup_nedar <span class="ot">&lt;-</span> dades_filtrades <span class="sc">%&gt;%</span></span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Tipus_Activitat <span class="sc">==</span> <span class="st">&quot;nedar&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(Hores_Activitat, Hores_Son, Menjades_Trampa, Mitjana_Expedient)</span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>grup_correr <span class="ot">&lt;-</span> dades_filtrades <span class="sc">%&gt;%</span></span>
-<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Tipus_Activitat <span class="sc">==</span> <span class="st">&quot;córrer&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(Hores_Activitat, Hores_Son, Menjades_Trampa, Mitjana_Expedient)</span>
-<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">hotelling.test</span>(grup_nedar, grup_correr))</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Hotelling)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>dades_filtrades <span class="ot">&lt;-</span> dades <span class="sc">%&gt;%</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Tipus_Activitat <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;nedar&quot;</span>, <span class="st">&quot;córrer&quot;</span>))</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>grup_nedar <span class="ot">&lt;-</span> dades_filtrades <span class="sc">%&gt;%</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Tipus_Activitat <span class="sc">==</span> <span class="st">&quot;nedar&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(Hores_Activitat, Hores_Son, Menjades_Trampa, Mitjana_Expedient)</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>grup_correr <span class="ot">&lt;-</span> dades_filtrades <span class="sc">%&gt;%</span></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Tipus_Activitat <span class="sc">==</span> <span class="st">&quot;córrer&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(Hores_Activitat, Hores_Son, Menjades_Trampa, Mitjana_Expedient)</span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">hotelling.test</span>(grup_nedar, grup_correr))</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Test stat:  11.397 
 Numerator df:  4 
@@ -3821,26 +3618,26 @@ T^2=\frac{n_1n_2}{n_1+n_2}(\bar{x}-\bar{y})S_p^{-1}(\bar{x}-\bar{y})\sim T^2(p,n
 \frac{n_1+n_2-1-p}{(n_1+n_2-2)p}T^2\sim F^p_{n_1+n_2-1-p}
 \]</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>p<span class="ot">=</span><span class="dv">4</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>S_1<span class="ot">=</span>grup_nedar <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>) <span class="sc">%&gt;%</span> <span class="fu">as.matrix</span>() <span class="sc">%&gt;%</span> <span class="fu">cov</span>()</span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>S_2<span class="ot">=</span>grup_correr <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>) <span class="sc">%&gt;%</span> <span class="fu">as.matrix</span>() <span class="sc">%&gt;%</span> <span class="fu">cov</span>()</span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>n_1<span class="ot">=</span><span class="fu">nrow</span>(grup_correr)</span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>n_2<span class="ot">=</span><span class="fu">nrow</span>(grup_nedar)</span>
-<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>bar_x<span class="ot">=</span><span class="fu">colMeans</span>(grup_correr)</span>
-<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>bar_y<span class="ot">=</span><span class="fu">colMeans</span>(grup_nedar)</span>
-<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>S_p<span class="ot">=</span>(n_1<span class="sc">*</span>S_1<span class="sc">+</span>n_2<span class="sc">*</span>S_2)<span class="sc">/</span>(n_1<span class="sc">+</span>n_2<span class="dv">-2</span>)</span>
-<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>T_2<span class="ot">=</span><span class="fu">mahalanobis</span>(bar_x,bar_y,(n_1<span class="sc">+</span>n_2)<span class="sc">*</span>S_p<span class="sc">/</span>(n_1<span class="sc">*</span>n_2))</span>
-<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>T_2</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>p<span class="ot">=</span><span class="dv">4</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>S_1<span class="ot">=</span>grup_nedar <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>) <span class="sc">%&gt;%</span> <span class="fu">as.matrix</span>() <span class="sc">%&gt;%</span> <span class="fu">cov</span>()</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>S_2<span class="ot">=</span>grup_correr <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>) <span class="sc">%&gt;%</span> <span class="fu">as.matrix</span>() <span class="sc">%&gt;%</span> <span class="fu">cov</span>()</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>n_1<span class="ot">=</span><span class="fu">nrow</span>(grup_correr)</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>n_2<span class="ot">=</span><span class="fu">nrow</span>(grup_nedar)</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>bar_x<span class="ot">=</span><span class="fu">colMeans</span>(grup_correr)</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>bar_y<span class="ot">=</span><span class="fu">colMeans</span>(grup_nedar)</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>S_p<span class="ot">=</span>(n_1<span class="sc">*</span>S_1<span class="sc">+</span>n_2<span class="sc">*</span>S_2)<span class="sc">/</span>(n_1<span class="sc">+</span>n_2<span class="dv">-2</span>)</span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>T_2<span class="ot">=</span><span class="fu">mahalanobis</span>(bar_x,bar_y,(n_1<span class="sc">+</span>n_2)<span class="sc">*</span>S_p<span class="sc">/</span>(n_1<span class="sc">*</span>n_2))</span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>T_2</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 10.68928</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>est<span class="ot">=</span>((n_1<span class="sc">+</span>n_2<span class="dv">-1</span><span class="sc">-</span>p)<span class="sc">/</span>((n_1<span class="sc">+</span>n_2<span class="dv">-2</span>)<span class="sc">*</span>p))<span class="sc">*</span>T_2</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>est</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>est<span class="ot">=</span>((n_1<span class="sc">+</span>n_2<span class="dv">-1</span><span class="sc">-</span>p)<span class="sc">/</span>((n_1<span class="sc">+</span>n_2<span class="dv">-2</span>)<span class="sc">*</span>p))<span class="sc">*</span>T_2</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>est</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2.455646</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>p_valor<span class="ot">=</span><span class="fu">pf</span>(est,p,n_1<span class="sc">+</span>n_2<span class="dv">-1</span><span class="sc">-</span>p)</span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>p_valor</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>p_valor<span class="ot">=</span><span class="fu">pf</span>(est,p,n_1<span class="sc">+</span>n_2<span class="dv">-1</span><span class="sc">-</span>p)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>p_valor</span></code><button title="Copia al porta-retalls" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.9356628</code></pre>
 </div>
@@ -3849,6 +3646,11 @@ T^2=\frac{n_1n_2}{n_1+n_2}(\bar{x}-\bar{y})S_p^{-1}(\bar{x}-\bar{y})\sim T^2(p,n
 <section id="conclusions" class="level2">
 <h2 class="anchored" data-anchor-id="conclusions">Conclusions</h2>
 <p>Com a conclusió de l’estudi fet, podem concloure que dur una vida activa i saludable, implica una millora en el rendiment acadèmic (primer gràfic). Tot i que el nombre de manjades “trampa” si que té una proporcionalitat directe amb la mitjana acadèmica, podria ser perquè el fet de fer menjades trampa et redueixen l’estrés i això, per tant, també és saludable per a una persona. També podem concloure que si la teva activitat física és ioga, llavors la teva mitjana d’expedient tendeix a ser més alta respecte les altres. Per altre banda, la modalitat d’estudi no sembla tenir comportament diferents sobre la nota de l’expedient.</p>
+</section>
+<section id="bibliografia" class="level2">
+<h2 class="anchored" data-anchor-id="bibliografia">Bibliografia</h2>
+<p>·Apuntes de la asignatura</p>
+<p>·Apuntes estadística UIB</p>
 </section>
 
 </main>

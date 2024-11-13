@@ -27,6 +27,8 @@ library(GGally)
 library(dplyr)
 ```
 
+## Descripció de les dades
+
 En aquest treball ens dedicarem a estudiar com afecta dur una vida activa i saludable als estudis, sota la hipòtesi de que dur una vida activa i saludable implica millor rendiment acadèmic. Per això mirarem les **hores d'activitat física** que fa un alumne a la setmana, les **hores de son** de mitjana al dia, **mitjana expedient,** i el **nombre de menjades "trampa"** que fa un alume per setmana. Per altre banda, es demanarà el **Nivell d'energia percebut**: Classificat com "baix", "mitjà", "alt" i "molt alt", la **percepció del nivell d'estrès**: Classificat com "baix", "mitjà", "alt" i "molt alt" i la **satisfacció amb el propi estil de vida**: "dolent", "mitjà, "bo" i "molt bo". A part d'això, també ens interessa la **modalitat del grau** estudiat: (ciències, filologia, activitat física,...) i el **Tipus d'activitat física** que l'alumne fa: (córrer, nedar, ciclisme, ioga, etc.). Anem a simular una mostra de 100 alumnes a partir d'una distribució normal multivariant i la funció sample()
 
 ```{r}
@@ -70,6 +72,8 @@ dades <- data.frame(
   Tipus_Activitat = Tipus_Activitat
 )
 ```
+
+## Anàlisi descriptiu
 
 Per començar a analitzar la nostra observació, farem la matriu de dispersió entre les variables quantitatives.
 
@@ -195,6 +199,8 @@ var_tot
 
 Fixem-nos que la variància generalitzada és molt baixa (0.2527739), això ens indica que hi ha una baixa variabilitat entre les diferents variables estudiades. Notem que concorda amb la matriu de dispersió vista anteriorment, ja que els punts es reparteixen similarment en tots els casos. La variació total ens indica la variabilitat de les variables quantitatives a tot el conjunt de dades, és més alta (5.181528), això voldria dir que la diferència de la variabilitat total de les dades en conjunt és bastant més notable que no si les mirem en cada grup.
 
+## Aproximació multinomial
+
 Un cop hem acabat amb l'anàlisi descriptiu, anem a **modelitzar** les diferents modalitats estudiades pels alumnes a partir d'una distribució binomial. Per això haurem d'estimars els paràmetres $p_{ciències}$, $p_{filologia}$, $p_{activitat física}$, $p_{enginyeria}$ i $p_{economia}$ . Aquesta aproximació dels paràmetres ho farem amb els estimadors de màxima versemblança, i.e., les freqïuències relatives. Anem a calcular-les:
 
 ```{r}
@@ -217,6 +223,8 @@ probab
 ```
 
 És una probabilitat molt baixa, i té sentit que sigui així, ja que cada modalitat té l'estimador de probabilitat molt similar. De fet, filologia i activitat física tenen el mateix estimador (0.22), i en el nostre esdeveniment hi ha 8 alumnes d'activitat física i només un de filologia. Molt poc probable.
+
+## Regió multivariable
 
 Per continuar estudiant aquesta mostra, ens pot resultar interessant poder estimar la mitjana d'expedient d'un alumne a partir de les hores d'activitat física que fa un alumne a la setmana, la mitjana d'hores de son al dia i el nombre de menjades "trampa" que fa un alumne per setmana. Això es tradueix en fer un model de regressió multilineal de l'estil:
 
@@ -267,6 +275,8 @@ prediccio
 ```
 
 L'alumne amb les anteriors característiques esmentades, predim que té una mitjana d'expedient de 6.733716.
+
+## Contrast
 
 Ara, per últim, farem un contrast d'hipòtesi i per veure que la gent que té d'activitat física actual, córrer, té les mateixes mitjanes que la gent que neda, amb una significació de $\alpha=0.05$. És a dir $H_0:\mu_{córrer}=\mu_{nedar}$ i $H_1:\mu_{córrer}\neq \mu_{nedar}$
 
