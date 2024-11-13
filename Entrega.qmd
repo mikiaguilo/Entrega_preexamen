@@ -1,13 +1,16 @@
 ---
-title: "Taller evaluado de repaso para el Primer Parcial"
-subtitle: "20582- Análisis de Datos para el GMAT"
+title: "Pràctica pre-examen"
+subtitle: "Afecta tenir un estil de vida saludable en el nostre rendiment acadèmic?"
+date: today
 format:
   html:
     theme: lumen
     toc: true
     toc-depth: 3
-Rendering:
     embed-resources: true
+editor: visual
+author: "Miquel Àngel Aguiló Gonzalez"
+lang: "ca"
 ---
 
 ```{r setup, include=FALSE}
@@ -49,7 +52,7 @@ modalitats <- c("ciències", "filologia", "activitat física", "enginyeria", "ec
 Modalitat_Grau <- sample(modalitats, n, replace = TRUE)
 
 # Tipus d'activitat física
-activitats <- c("córrer", "nedar", "ciclisme", "ioga", "gimnàs","res")
+activitats <- c("córrer", "nedar", "ciclisme", "ioga", "gimnàs")
 Tipus_Activitat <- sample(activitats, n, replace = TRUE)
 
 # Cream el dataframe
@@ -131,13 +134,54 @@ ggplot(dades, aes(x = Tipus_Activitat, y = Mitjana_Expedient, fill = Tipus_Activ
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
-Amb aquest diagrama de violí, podem observar que no hi ha gaire diferència en com es distribueixen, podríem fer un altre test d'ANOVA i veure si les mitjanes són iguals.
+Amb aquest diagrama de violí, podem observar que hi ha gaire alguna diferència en com es distribueixen, podríem fer un altre test d'ANOVA i veure si les mitjanes són iguals o no.
 
 ```{r}
-summary(aov(dades$Mitjana_Expedient~dades$Tipus_Activitat))
+resultats_anova=aov(dades$Mitjana_Expedient~dades$Tipus_Activitat)
+summary(resultats_anova)
 ```
 
-Efectivament, tenim un $p$-valor prou alt (0.769) i acceptem la hipòtesi nul·la de que les mitjanes són totes igual.
+Efectivament, tenim un $p$-valor baix (0.0128), i si considerem $\alpha=0.05$ i rebutgem la hipòtesi nul·la de que les mitjanes són totes igual, i tendríem diferències en les mitjanes. Executem el test de Tukey post-hoc per veure quines mitjanes difereixen entre elles.
+
+```{r}
+TukeyHSD(resultats_anova)
+```
+
+Podem concloure, que ioga té una mitjana diferent a les altres, i que la gent que fa ioga té millors resultats acadèmics.
+
+Anem a fer el mateix amb els diferents tipus de modalitats d'estudi.
+
+```{r}
+library(ggplot2)
+
+# Crear diagrama de violí per a les modalitats d'estudi
+ggplot(dades, aes(x = Modalitat_Grau, y = Mitjana_Expedient, fill = Modalitat_Grau)) +
+  geom_violin(trim = FALSE, alpha = 0.7) +  # Diagrama de violí
+  geom_boxplot(width = 0.1, color = "black", alpha = 0.5) +  # Boxplot superposat
+  labs(
+    title = "Diagrama de Violí de la Mitjana de l'Expedient per Modalitat d'Estudi",
+    x = "Modalitat d'Estudi",
+    y = "Mitjana d'Examen"
+  ) +
+  scale_fill_manual(values = c("ciències" = "#FF6347", "filologia" = "#4682B4",
+                               "activitat física" = "#32CD32", "enginyeria" = "#FFD700",
+                               "economia" = "#9370DB")) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    plot.title = element_text(hjust = 0.5, face = "bold")
+  )
+
+```
+
+Aquí sí que sembla que totes les mitjanes són iguales. Anem a fer el test ANOVA.
+
+```{r}
+resultats_anova_2=aov(dades$Mitjana_Expedient~dades$Modalitat_Grau)
+summary(resultats_anova_2)
+```
+
+Efectivament, el $p$-valor és prou gran (0.958) per quedar-mos amb la hipòtesi nul·la de que totes les mitjanes són iguales.
 
 Per acabar l'anàlisi descriptiu, ens pot resultar prou útil mirar la variància generalitzada i la variància total per veure com es dispersionen les dades.
 
@@ -240,9 +284,43 @@ print(hotelling.test(grup_nedar, grup_correr))
 
 Notem que el $p$-valor\>0.05, llavors acceptem la hipòtesi nul·la, i ens quedem amb que les mitjanes són iguals.
 
-Ara realitzarem el mateix contrast, però de manera teòrica. Calculant l'estadístic del test de Hotelling $T^2$ , i relacionant-lo amb la distribució de Fisher.
+Ara realitzarem el mateix contrast, però de manera teòrica. Calculant l'estadístic del test de Hotelling $T^2$ , i relacionant-lo amb la distribució de Fisher. Per això, hem de calcular la matriu de covariàncies combinada:
+
+$$
+Sp = \frac{n_1S_1 + n_2   S_2 }{n_1 + n_2 - 2}
+$$
+
+Llavors, tenim:
+
+$$
+T^2=\frac{n_1n_2}{n_1+n_2}(\bar{x}-\bar{y})S_p^{-1}(\bar{x}-\bar{y})\sim T^2(p,n_1+n_2-2)
+$$
+
+i que:
+
+$$
+\frac{n_1+n_2-1-p}{(n_1+n_2-2)p}T^2\sim F^p_{n_1+n_2-1-p}
+$$
 
 ```{r}
-S=dades_filtrades %>% dplyr::select(1:4) %>% as.matrix() %>% cov()
-
+p=4
+S_1=grup_nedar %>% dplyr::select(1:4) %>% as.matrix() %>% cov()
+S_2=grup_correr %>% dplyr::select(1:4) %>% as.matrix() %>% cov()
+n_1=nrow(grup_correr)
+n_2=nrow(grup_nedar)
+bar_x=colMeans(grup_correr)
+bar_y=colMeans(grup_nedar)
+S_p=(n_1*S_1+n_2*S_2)/(n_1+n_2-2)
+T_2=mahalanobis(bar_x,bar_y,(n_1+n_2)*S_p/(n_1*n_2))
+T_2
+est=((n_1+n_2-1-p)/((n_1+n_2-2)*p))*T_2
+est
+p_valor=pf(est,p,n_1+n_2-1-p)
+p_valor
 ```
+
+Ens queda el mateix $p$-valor que amb les funcions de R, i arribem a la mateixa con conclusió, acceptem la hipòtesi nul·la.
+
+## Conclusions
+
+Com a conclusió de l'estudi fet, podem concloure que dur una vida activa i saludable, implica una millora en el rendiment acadèmic (primer gràfic). Tot i que el nombre de manjades "trampa" si que té una proporcionalitat directe amb la mitjana acadèmica, podria ser perquè el fet de fer menjades trampa et redueixen l'estrés i això, per tant, també és saludable per a una persona. També podem concloure que si la teva activitat física és ioga, llavors la teva mitjana d'expedient tendeix a ser més alta respecte les altres. Per altre banda, la modalitat d'estudi no sembla tenir comportament diferents sobre la nota de l'expedient.
