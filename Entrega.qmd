@@ -13,6 +13,8 @@ author: "Miquel Àngel Aguiló Gonzalez"
 lang: "ca"
 ---
 
+Enllaç: <https://github.com/mikiaguilo/Entrega_preexamen>
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 ```
@@ -25,7 +27,7 @@ library(GGally)
 library(dplyr)
 ```
 
-En aquest treball ens dedicarem a estudiar com afecta dur una vida activa i saludable als estudis, sota la hipòtesi de que dur una vida activa i saludable implica millor rendiment acadèmic. Per això mirarem les **hores d'activitat física** que fa un alumne a la setmana, les **hores de son** de mitjana al dia, **mitjana expedient,** i el **nombre de menjades "trampa"** que fa un alume per setmana. Per altre banda, es demanarà el **Nivell d'energia percebut**: Classificat com "baix", "mitjà" o "alt", la **percepció del nivell d'estrès**: Classificat com "baix", "moderadament alt" o "alt" i la **satisfacció amb el propi estil de vida**: En una escala del 1 al 5 (sent 1 = gens satisfet i 5 = molt satisfet). A part d'això, també ens interessa la **modalitat del grau** estudiat: (ciències, filologia, activitat física,...) i el **Tipus d'activitat física** que l'alumne fa: (córrer, nedar, ciclisme, ioga, etc.). Anem a simular una mostra de 100 alumnes a partir d'una distribució normal multivariant i la funció sample()
+En aquest treball ens dedicarem a estudiar com afecta dur una vida activa i saludable als estudis, sota la hipòtesi de que dur una vida activa i saludable implica millor rendiment acadèmic. Per això mirarem les **hores d'activitat física** que fa un alumne a la setmana, les **hores de son** de mitjana al dia, **mitjana expedient,** i el **nombre de menjades "trampa"** que fa un alume per setmana. Per altre banda, es demanarà el **Nivell d'energia percebut**: Classificat com "baix", "mitjà", "alt" i "molt alt", la **percepció del nivell d'estrès**: Classificat com "baix", "mitjà", "alt" i "molt alt" i la **satisfacció amb el propi estil de vida**: "dolent", "mitjà, "bo" i "molt bo". A part d'això, també ens interessa la **modalitat del grau** estudiat: (ciències, filologia, activitat física,...) i el **Tipus d'activitat física** que l'alumne fa: (córrer, nedar, ciclisme, ioga, etc.). Anem a simular una mostra de 100 alumnes a partir d'una distribució normal multivariant i la funció sample()
 
 ```{r}
 set.seed(123)
@@ -67,7 +69,6 @@ dades <- data.frame(
   Modalitat_Grau = Modalitat_Grau,
   Tipus_Activitat = Tipus_Activitat
 )
-dades
 ```
 
 Per començar a analitzar la nostra observació, farem la matriu de dispersió entre les variables quantitatives.
@@ -324,3 +325,9 @@ Ens queda el mateix $p$-valor que amb les funcions de R, i arribem a la mateixa 
 ## Conclusions
 
 Com a conclusió de l'estudi fet, podem concloure que dur una vida activa i saludable, implica una millora en el rendiment acadèmic (primer gràfic). Tot i que el nombre de manjades "trampa" si que té una proporcionalitat directe amb la mitjana acadèmica, podria ser perquè el fet de fer menjades trampa et redueixen l'estrés i això, per tant, també és saludable per a una persona. També podem concloure que si la teva activitat física és ioga, llavors la teva mitjana d'expedient tendeix a ser més alta respecte les altres. Per altre banda, la modalitat d'estudi no sembla tenir comportament diferents sobre la nota de l'expedient.
+
+## Bibliografia
+
+·Apuntes de la asignatura
+
+·Apuntes estadística UIB
